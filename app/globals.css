@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-base text-ink antialiased selection:bg-accent selection:text-base;
+  }
+}
+
+@layer utilities {
+  .bg-vichy {
+    background-image: 
+      linear-gradient(rgba(200, 107, 94, 0.05) 50%, transparent 50%),
+      linear-gradient(90deg, rgba(200, 107, 94, 0.05) 50%, transparent 50%);
+    background-size: 8px 8px;
+  }
+  .bg-plumeti {
+    background-image: radial-gradient(rgba(44, 42, 41, 0.1) 15%, transparent 16%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+  }
+  .border-stitch {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: rgba(44, 42, 41, 0.2);
+  }
+}
