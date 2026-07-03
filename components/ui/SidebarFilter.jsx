@@ -1,8 +1,9 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const categories = [
   { name: 'Todo', path: '/coleccion' },
@@ -21,10 +22,10 @@ const sizes = [
 
 export default function SidebarFilter() {
   const pathname = usePathname();
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  return (
+  const FilterContent = () => (
     <div className="flex flex-col gap-10">
-      
       {/* Category Filter */}
       <div>
         <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink mb-6 border-b border-ink/10 pb-2">
@@ -37,6 +38,7 @@ export default function SidebarFilter() {
               <li key={cat.path}>
                 <Link 
                   href={cat.path} 
+                  onClick={() => setMobileFiltersOpen(false)}
                   className={`transition-colors ${isActive ? 'text-ink font-semibold' : 'hover:text-ink'}`}
                 >
                   {cat.name}
@@ -47,7 +49,7 @@ export default function SidebarFilter() {
         </ul>
       </div>
 
-      {/* Event Filter (Mock Visual) */}
+      {/* Event Filter */}
       <div>
         <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink mb-6 border-b border-ink/10 pb-2">
           Por Evento
@@ -64,7 +66,7 @@ export default function SidebarFilter() {
         </ul>
       </div>
 
-      {/* Size Filter (Mock Visual) */}
+      {/* Size Filter */}
       <div>
         <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink mb-6 border-b border-ink/10 pb-2">
           Talla
@@ -80,7 +82,58 @@ export default function SidebarFilter() {
           ))}
         </div>
       </div>
-
     </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Filter Button */}
+      <div className="md:hidden mb-6">
+        <button 
+          onClick={() => setMobileFiltersOpen(true)}
+          className="w-full flex items-center justify-center gap-2 border border-ink/20 py-3 rounded-full font-sans text-[11px] uppercase tracking-widest text-ink hover:bg-ink hover:text-white transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+          Filtrar Colección
+        </button>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileFiltersOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileFiltersOpen(false)}
+              className="md:hidden fixed inset-0 bg-ink/20 backdrop-blur-sm z-[60]"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col"
+            >
+              <div className="p-6 flex justify-between items-center border-b border-ink/5 bg-base sticky top-0 z-10">
+                <span className="font-serif italic text-lg text-ink">Filtros</span>
+                <button onClick={() => setMobileFiltersOpen(false)} className="p-2 -mr-2 text-ink/70 hover:text-ink">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+              <div className="p-8">
+                <FilterContent />
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Sticky Sidebar */}
+      <div className="hidden md:block sticky top-32">
+        <FilterContent />
+      </div>
+    </>
   );
 }

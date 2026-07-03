@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import useEmblaCarousel from 'embla-carousel-react';
 import BrandPillars from '../components/ui/BrandPillars';
 import Bow from '../components/ui/Bow';
 
@@ -14,6 +15,8 @@ const fadeUp = {
 };
 
 export default function Home() {
+  const [emblaRef] = useEmblaCarousel({ loop: true });
+
   return (
     <div className="pt-40 md:pt-48 min-h-screen overflow-hidden">
       
@@ -49,7 +52,22 @@ export default function Home() {
           className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl"
           initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img src="/img/flamenca_blanca.png" alt="Luna Kids - Moda Infantil Sevilla" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+          <div className="overflow-hidden w-full h-full cursor-grab active:cursor-grabbing" ref={emblaRef}>
+            <div className="flex h-full">
+              <div className="flex-[0_0_100%] min-w-0 relative">
+                <img src="/img/flamenca_blanca.png" alt="Luna Kids - Colección" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+              </div>
+              <div className="flex-[0_0_100%] min-w-0 relative">
+                <img src="/img/galeria_4.png" alt="Luna Kids - Ceremonia" className="w-full h-full object-cover object-center" />
+              </div>
+              <div className="flex-[0_0_100%] min-w-0 relative">
+                <img src="/img/ninas_vichy.png" alt="Luna Kids - Diario" className="w-full h-full object-cover object-center" />
+              </div>
+              <div className="flex-[0_0_100%] min-w-0 relative">
+                <img src="/img/galeria_3.png" alt="Luna Kids - Taller" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 15%' }} />
+              </div>
+            </div>
+          </div>
           <div className="absolute bottom-4 left-4 z-10 rotate-[-20deg]">
             <Bow />
           </div>
