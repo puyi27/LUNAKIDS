@@ -195,21 +195,52 @@ export default function Navbar() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden w-full bg-linen border-b border-ink/5 shadow-xl overflow-hidden"
-          >
-            <div className="py-6 px-6 flex flex-col gap-6 text-[13px] font-sans font-semibold tracking-[0.15em] uppercase text-ink">
-              {menuItems.map((item, i) => (
-                <React.Fragment key={item.id}>
-                  <Link href={item.href} onClick={() => setIsOpen(false)}>{item.title}</Link>
-                  {i < menuItems.length - 1 && <div className="w-full h-px bg-ink/10"></div>}
-                </React.Fragment>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="md:hidden fixed inset-0 bg-ink/20 backdrop-blur-sm z-[60]"
+            />
+            <motion.div 
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="md:hidden fixed top-0 left-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col"
+            >
+              <div className="p-6 flex justify-end">
+                <button onClick={() => setIsOpen(false)} className="p-2 -mr-2 text-ink/70 hover:text-ink">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="px-8 pb-8 flex flex-col gap-6 font-sans text-ink">
+                {menuItems.map((item) => (
+                  <div key={item.id} className="flex flex-col border-b border-ink/5 pb-4">
+                    <Link href={item.href} onClick={() => setIsOpen(false)} className="py-2 text-[13px] font-bold tracking-[0.15em] uppercase flex items-center justify-between">
+                      {item.title}
+                    </Link>
+                    {item.submenus && (
+                      <div className="mt-3 flex flex-col gap-3 pl-4 border-l border-ink/10">
+                        {item.submenus.map((sub, idx) => (
+                          <Link key={idx} href={sub.href} onClick={() => setIsOpen(false)} className="py-2 text-[11px] text-ink/70 tracking-widest hover:text-accent">
+                            {sub.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-auto p-8 bg-softBeige/50 border-t border-ink/5">
+                <Link href="/cuenta" onClick={() => setIsOpen(false)} className="block py-3 text-[11px] font-bold tracking-widest uppercase text-ink/70 hover:text-ink">Mi Cuenta</Link>
+                <Link href="/ayuda" onClick={() => setIsOpen(false)} className="block py-3 text-[11px] font-bold tracking-widest uppercase text-ink/70 hover:text-ink">Ayuda / FAQ</Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
