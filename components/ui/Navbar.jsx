@@ -132,9 +132,9 @@ export default function Navbar() {
                 className={`rounded-full overflow-hidden bg-base border border-ink/5 shadow-md flex items-center justify-center relative transition-all duration-300 ${
                   scrolled 
                     ? 'w-16 h-16 md:w-20 md:h-20' 
-                    : 'w-32 h-32 md:w-48 md:h-48'
+                    : 'w-28 h-28 md:w-36 md:h-36'
                 }`} 
-                style={{ marginBottom: scrolled ? '0' : '-3rem' }}
+                style={{ marginBottom: scrolled ? '0' : '-2rem' }}
               >
                 <img 
                   src="/logo_final.png" 
