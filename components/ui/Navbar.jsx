@@ -127,19 +127,18 @@ export default function Navbar() {
           </div>
 
           <div className="w-1/3 flex justify-center relative h-16">
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-50" style={{ top: scrolled ? '-8px' : '0' }}>
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-50 md:-mt-8 -mt-6">
               <div 
                 className={`rounded-full overflow-hidden bg-base border border-ink/5 shadow-md flex items-center justify-center relative transition-all duration-300 ${
                   scrolled 
-                    ? 'w-16 h-16 md:w-20 md:h-20' 
+                    ? 'w-16 h-16 md:w-20 md:h-20 mt-6 md:mt-8' 
                     : 'w-28 h-28 md:w-36 md:h-36'
                 }`} 
-                style={{ marginBottom: scrolled ? '0' : '-2rem' }}
               >
                 <img 
                   src="/logo_final.png" 
                   alt="Medallón Luna Kids" 
-                  className="w-[105%] h-[105%] object-cover mix-blend-multiply group-hover:scale-110 transition-transform duration-500 rounded-full" 
+                  className="w-full h-full object-cover scale-[1.15] mix-blend-multiply group-hover:scale-[1.25] transition-transform duration-500 rounded-full" 
                 />
               </div>
             </Link>
