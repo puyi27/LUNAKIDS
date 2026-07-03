@@ -3,6 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+import { useCartStore } from '../../store/cartStore';
+
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0 },
@@ -10,6 +12,8 @@ const fadeUp = {
 };
 
 export default function ProductDetailUI({ product }) {
+  const addItem = useCartStore(state => state.addItem);
+
   if (!product) return null;
 
   return (
@@ -51,9 +55,23 @@ export default function ProductDetailUI({ product }) {
             </div>
           </div>
 
-          <button className="w-full bg-ink text-base py-5 font-sans text-[11px] uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-accent hover:text-ink transition-all duration-500 ease-out shadow-sm hover:shadow-md">
-            Añadir a la Cesta
-          </button>
+          {product.isAtelier ? (
+            <a 
+              href={`https://wa.me/34619172134?text=${encodeURIComponent(`Hola, estoy interesada en el servicio Atelier para el artículo: ${product.name}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full block text-center border border-ink text-ink py-5 font-sans text-[11px] uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-ink hover:text-base transition-all duration-500 ease-out shadow-sm"
+            >
+              Conserje Atelier
+            </a>
+          ) : (
+            <button 
+              onClick={() => addItem(product)}
+              className="w-full bg-ink text-base py-5 font-sans text-[11px] uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-accent hover:text-ink transition-all duration-500 ease-out shadow-sm hover:shadow-md"
+            >
+              Añadir a la Cesta
+            </button>
+          )}
           
           <div className="mt-12 pt-8 border-t border-ink/10">
             <p className="text-[11px] font-sans text-ink/50 font-medium leading-[1.8] uppercase tracking-widest">

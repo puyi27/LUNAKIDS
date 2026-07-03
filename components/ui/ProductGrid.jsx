@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useCartStore } from '../../store/cartStore';
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -42,11 +43,25 @@ export default function ProductGrid({ products }) {
                 </svg>
               </button>
 
-              {/* Botón Vista Rápida - Aparece en hover desde abajo */}
-              <div className="absolute bottom-4 left-0 w-full px-4 z-10 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                <button className="w-full bg-base/95 backdrop-blur py-3 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-ink hover:bg-accent hover:text-base rounded shadow-lg transition-colors">
-                  Vista rápida
-                </button>
+              {/* Botón Acción - Aparece en hover desde abajo */}
+              <div className="absolute bottom-4 left-0 w-full px-4 z-10 opacity-0 md:group-hover:opacity-100 translate-y-4 md:group-hover:translate-y-0 transition-all duration-300 ease-out flex justify-center">
+                {item.isAtelier ? (
+                  <a 
+                    href={`https://wa.me/34619172134?text=${encodeURIComponent(`Hola, estoy interesada en el servicio Atelier para el artículo: ${item.name}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center w-full bg-base/95 backdrop-blur py-3 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-ink hover:bg-ink hover:text-base border border-ink/10 rounded shadow-lg transition-colors"
+                  >
+                    Conserje VIP
+                  </a>
+                ) : (
+                  <button 
+                    onClick={(e) => { e.preventDefault(); useCartStore.getState().addItem(item); }}
+                    className="w-full bg-base/95 backdrop-blur py-3 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-ink hover:bg-accent hover:text-ink rounded shadow-lg transition-colors"
+                  >
+                    Añadir a la cesta
+                  </button>
+                )}
               </div>
             </div>
             

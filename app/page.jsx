@@ -123,7 +123,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           
           <motion.div className="group cursor-pointer" {...fadeUp}>
-            <Link href="/flamenca">
+            <Link href="/coleccion/flamenca">
               <div className="aspect-[3/4] mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
                 <div className="w-full h-full relative">
                   <img src="/img/galeria_3.png" className="w-full h-full object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105 mix-blend-multiply" />
@@ -163,7 +163,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div className="group cursor-pointer" {...fadeUp}>
-            <Link href="/batas">
+            <Link href="/coleccion/batas">
               <div className="aspect-[3/4] mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
                 <div className="w-full h-full relative">
                   <img src="/img/ninas_vichy.png" className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 mix-blend-multiply" />

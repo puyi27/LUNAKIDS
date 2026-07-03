@@ -3,9 +3,16 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Marquee from './Marquee';
+import { useCartStore } from '../../store/cartStore';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { getItemCount, openCart } = useCartStore();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <nav className="fixed w-full top-0 z-50 flex flex-col transition-all duration-300">
@@ -27,9 +34,9 @@ export default function Navbar() {
           {/* Left Navigation (Desktop Only) */}
           <div className="hidden md:flex flex-1 gap-8 text-[11px] font-sans font-semibold tracking-[0.2em] uppercase text-ink/70">
             <Link href="/coleccion" className="hover:text-ink transition-colors">Colección</Link>
-            <Link href="/flamenca" className="hover:text-ink transition-colors">Flamenca</Link>
-            <Link href="/batas" className="hover:text-ink transition-colors">Batas</Link>
-            <Link href="/complementos" className="hover:text-ink transition-colors">Complementos</Link>
+            <Link href="/coleccion/flamenca" className="hover:text-ink transition-colors">Flamenca</Link>
+            <Link href="/coleccion/batas" className="hover:text-ink transition-colors">Batas</Link>
+            <Link href="/coleccion/complementos" className="hover:text-ink transition-colors">Complementos</Link>
           </div>
           
           {/* Center Logo */}
@@ -53,11 +60,11 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
             </button>
-            <button className="hover:text-accent transition-colors flex items-center gap-1.5" aria-label="Cesta">
+            <button onClick={openCart} className="hover:text-accent transition-colors flex items-center gap-1.5" aria-label="Cesta">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
               </svg>
-              <span className="text-[10px] font-sans font-semibold tracking-wider">0</span>
+              <span className="text-[10px] font-sans font-semibold tracking-wider">{mounted ? getItemCount() : 0}</span>
             </button>
           </div>
         </div>
@@ -68,11 +75,11 @@ export default function Navbar() {
         <div className="md:hidden absolute top-full left-0 w-full bg-base border-b border-ink/5 shadow-xl py-6 px-6 flex flex-col gap-6 text-[13px] font-sans font-semibold tracking-[0.15em] uppercase text-ink">
           <Link href="/coleccion" onClick={() => setIsOpen(false)}>Colección</Link>
           <div className="w-full h-px bg-ink/5"></div>
-          <Link href="/flamenca" onClick={() => setIsOpen(false)}>Flamenca</Link>
+          <Link href="/coleccion/flamenca" onClick={() => setIsOpen(false)}>Flamenca</Link>
           <div className="w-full h-px bg-ink/5"></div>
-          <Link href="/batas" onClick={() => setIsOpen(false)}>Batas</Link>
+          <Link href="/coleccion/batas" onClick={() => setIsOpen(false)}>Batas</Link>
           <div className="w-full h-px bg-ink/5"></div>
-          <Link href="/complementos" onClick={() => setIsOpen(false)}>Complementos</Link>
+          <Link href="/coleccion/complementos" onClick={() => setIsOpen(false)}>Complementos</Link>
           
           <div className="pt-4 flex gap-6 mt-4">
             <a href="https://www.instagram.com/lunakidsmoda/?hl=es" target="_blank" rel="noopener noreferrer" className="text-ink/60 hover:text-ink">

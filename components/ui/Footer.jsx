@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-base border-t border-ink/5 text-ink py-8 px-6">
       <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
         <div className="col-span-2 md:col-span-1 flex flex-col justify-center">
-          <h2 className="font-serif text-xl md:text-2xl mb-2">Luna Kids</h2>
+          <img src="/logo_final.png" alt="Luna Kids" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply opacity-80 mb-3" />
           <p className="font-sans text-[11px] text-ink/50 hidden md:block leading-relaxed">
             Diseñamos y confeccionamos moda infantil clásica desde Sevilla.
           </p>

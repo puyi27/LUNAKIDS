@@ -2,6 +2,7 @@ import './globals.css'
 import Navbar from '../components/ui/Navbar'
 import Footer from '../components/ui/Footer'
 import WhatsAppButton from '../components/ui/WhatsAppButton'
+import CartDrawer from '../components/ui/CartDrawer'
 
 export const metadata = {
   title: 'Luna Kids | Moda Infantil Andaluza',
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CartDrawer />
         <WhatsAppButton />
       </body>
     </html>
