@@ -2,8 +2,8 @@ import React from 'react';
 import ProductGrid from '../../../components/ui/ProductGrid';
 import { getProductsByCategory } from '../../../lib/data';
 
-export default function ColeccionPage() {
-  const products = getProductsByCategory('coleccion');
+export default async function ColeccionPage() {
+  const products = await getProductsByCategory('coleccion');
 
   return (
     <div>

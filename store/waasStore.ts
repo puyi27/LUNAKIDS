@@ -10,6 +10,8 @@ export interface ProductPayload {
   category?: string;
   isAtelier?: boolean;
   mat?: string;
+  description?: string;
+  hoverImage?: string;
 }
 
 export interface WaaSCartState {

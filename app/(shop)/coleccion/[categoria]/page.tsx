@@ -23,9 +23,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CategoriaPage({ params }) {
+export default async function CategoriaPage({ params }: { params: Promise<{ categoria: string }> }) {
   const resolvedParams = await params;
-  const products = getProductsByCategory(resolvedParams.categoria);
+  const products = await getProductsByCategory(resolvedParams.categoria);
   
   const titles = {
     flamenca: 'Trajes de Flamenca',

@@ -2,8 +2,9 @@ import React from 'react';
 import ProductDetailUI from '../../../../components/ui/ProductDetailUI';
 import { getProductById } from '../../../../lib/data';
 
-export async function generateMetadata({ params }) {
-  const product = getProductById(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const product = await getProductById(resolvedParams.id);
   if (!product) {
     return { title: 'Producto no encontrado | Luna Kids' };
   }
@@ -13,8 +14,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ProductPage({ params }) {
-  const product = getProductById(params.id);
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const product = await getProductById(resolvedParams.id);
 
   if (!product) {
     return (
