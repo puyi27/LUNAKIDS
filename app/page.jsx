@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import BrandPillars from '../components/ui/BrandPillars';
 import Bow from '../components/ui/Bow';
 
@@ -15,7 +16,22 @@ const fadeUp = {
 };
 
 export default function Home() {
-  const [emblaRef] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 5000, stopOnInteraction: false })]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setSelectedIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
 
   return (
     <div className="pt-40 md:pt-48 min-h-screen overflow-hidden">
@@ -70,6 +86,22 @@ export default function Home() {
           </div>
           <div className="absolute bottom-4 left-4 z-10 rotate-[-20deg]">
             <Bow />
+          </div>
+          
+          {/* Slider Dots */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {[0, 1, 2, 3].map((index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === selectedIndex 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/40 hover:bg-white/70'
+                }`}
+                aria-label={`Ir a la foto ${index + 1}`}
+              />
+            ))}
           </div>
         </motion.div>
       </section>
