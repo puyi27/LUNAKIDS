@@ -10,7 +10,8 @@ export function generateStaticParams() {
   ];
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
   const titles = {
     flamenca: 'Trajes de Flamenca',
     batas: 'Batas y Diario',
@@ -18,12 +19,13 @@ export function generateMetadata({ params }) {
   };
   
   return {
-    title: `${titles[params.categoria] || 'Colección'} | Luna Kids`,
+    title: `${titles[resolvedParams.categoria] || 'Colección'} | Luna Kids`,
   };
 }
 
-export default function CategoriaPage({ params }) {
-  const products = getProductsByCategory(params.categoria);
+export default async function CategoriaPage({ params }) {
+  const resolvedParams = await params;
+  const products = getProductsByCategory(resolvedParams.categoria);
   
   const titles = {
     flamenca: 'Trajes de Flamenca',
@@ -31,7 +33,7 @@ export default function CategoriaPage({ params }) {
     complementos: 'Complementos'
   };
 
-  const catName = titles[params.categoria] || 'Colección';
+  const catName = titles[resolvedParams.categoria] || 'Colección';
 
   return (
     <div>
