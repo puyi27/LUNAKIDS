@@ -49,7 +49,7 @@ export default function Home() {
           className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl"
           initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img src="/img/hero_main.png" alt="Luna Kids - Moda Infantil Sevilla" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+          <img src="/img/flamenca_blanca.png" alt="Luna Kids - Moda Infantil Sevilla" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
           <div className="absolute bottom-4 left-4 z-10 rotate-[-20deg]">
             <Bow />
           </div>
