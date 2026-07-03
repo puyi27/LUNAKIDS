@@ -7,7 +7,7 @@ const fadeUp = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-50px" },
-  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
 };
 
 export default function Atelier() {
@@ -51,7 +51,7 @@ export default function Atelier() {
         {/* Columna Derecha: Imagen Elegante */}
         <motion.div 
           className="order-1 md:order-2 h-[60vh] md:h-[80vh] w-full rounded-2xl overflow-hidden bg-[#F2EFE8] shadow-sm relative"
-          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <img src="/atelier_luna.png" alt="Taller de Luna Kids" className="w-full h-full object-cover object-center opacity-90 mix-blend-multiply" />
         </motion.div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductDetailUI from '../../../components/ui/ProductDetailUI';
-import { getProductById } from '../../../lib/data';
+import ProductDetailUI from '../../../../components/ui/ProductDetailUI';
+import { getProductById } from '../../../../lib/data';
 
 export async function generateMetadata({ params }) {
   const product = getProductById(params.id);

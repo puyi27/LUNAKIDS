@@ -3,16 +3,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import BrandPillars from '../components/ui/BrandPillars';
-import Bow from '../components/ui/Bow';
+import BrandPillars from '../../components/ui/BrandPillars';
+import Bow from '../../components/ui/Bow';
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
-  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
 };
 
 export default function Home() {
@@ -66,21 +67,21 @@ export default function Home() {
         
         <motion.div 
           className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl"
-          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="overflow-hidden w-full h-full cursor-grab active:cursor-grabbing" ref={emblaRef}>
             <div className="flex h-full">
               <div className="flex-[0_0_100%] min-w-0 relative">
-                <img src="/img/flamenca_blanca.png" alt="Luna Kids - Colección" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+                <Image src="/img/flamenca_blanca.png" alt="Luna Kids - Colección" fill priority sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 20%' }} />
               </div>
               <div className="flex-[0_0_100%] min-w-0 relative">
-                <img src="/img/galeria_4.png" alt="Luna Kids - Ceremonia" className="w-full h-full object-cover object-center" />
+                <Image src="/img/galeria_4.png" alt="Luna Kids - Ceremonia" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
               </div>
               <div className="flex-[0_0_100%] min-w-0 relative">
-                <img src="/img/ninas_vichy.png" alt="Luna Kids - Diario" className="w-full h-full object-cover object-center" />
+                <Image src="/img/ninas_vichy.png" alt="Luna Kids - Diario" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
               </div>
               <div className="flex-[0_0_100%] min-w-0 relative">
-                <img src="/img/galeria_3.png" alt="Luna Kids - Taller" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 15%' }} />
+                <Image src="/img/galeria_3.png" alt="Luna Kids - Taller" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 15%' }} />
               </div>
             </div>
           </div>

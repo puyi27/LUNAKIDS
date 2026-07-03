@@ -1,13 +1,14 @@
 # LUNAKIDS: Progress & State
 
 ## Estado Actual
-- **Fase de Arquitectura:** Completada. Migración de Vite a Next.js (App Router) exitosa.
+- **Fase de Arquitectura (Fase 2):** Completada. Implementados Route Groups `(shop)` y `(atelier)` para separación de dominios de UI. Refactorizado estado con Zustand + `useSyncExternalStore` y migración a TypeScript estricto.
 - **Fase Visual:** Completada. Inyección de paleta de colores de marca, tipografías (incluyendo caligráfica `Dancing Script`) y texturas (vichy, plumeti, bordes `stitch`).
 - **Fase de Base de Datos:** Mock de Supabase pasivo activo y funcional para prevenir errores 404 en Vercel.
-- **Despliegue:** Preparado para Vercel (`.next` ignorado, config limpia, build verificado).
-- **Harness Engineering:** Implementado.
+- **Despliegue:** Preparado para Vercel (`.next` ignorado, config limpia, build verificado exitosamente).
+- **Harness Engineering:** Implementado. Verificación post-refactor exitosa.
 
 ## Historial de Sesión (Últimos Cambios)
+- [2026-07-03] Ejecutada Fase 2 WaaS: Route Groups, TypeScript en Zustand (useSyncExternalStore), Bottom Navigation (Mobile First, touch targets 44x44px), SEO Local y JSON-LD.
 - [2026-06-30] Implementación de Grid Simétrico para productos.
 - [2026-06-30] Rediseño del Atelier (`/atelier`) a diseño tipo revista (moodboard).
 - [2026-06-30] Creación del Harness Engineering local (`AGENTS.md`, `verify.sh`, `init.sh`).

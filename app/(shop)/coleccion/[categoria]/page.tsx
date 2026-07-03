@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductGrid from '../../../components/ui/ProductGrid';
-import { getProductsByCategory } from '../../../lib/data';
+import ProductGrid from '../../../../components/ui/ProductGrid';
+import { getProductsByCategory } from '../../../../lib/data';
 
 export function generateStaticParams() {
   return [

@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarFilter from '../../components/ui/SidebarFilter';
+import SidebarFilter from '../../../components/ui/SidebarFilter';
 
 export const metadata = {
   title: 'Colección | Luna Kids',

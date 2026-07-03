@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useCartStore } from '../../store/cartStore';
+import { useWaaSStore } from '../../store/waasStore';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { getItemCount, openCart } = useCartStore();
+  const cartItems = useWaaSStore((state: any) => state.items, []);
+  const itemCount = cartItems ? cartItems.length : 0;
   const [hoveredMenu, setHoveredMenu] = useState(null);
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export default function Navbar() {
           
           <div className="w-1/3 flex items-center justify-start">
             <button 
-              className="md:hidden p-2 text-ink"
+              className="md:hidden text-ink min-w-[44px] min-h-[44px] flex items-center justify-center -ml-2"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Abrir menú"
             >
@@ -182,11 +183,11 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
-            <button onClick={openCart} className="text-accent hover:text-ink transition-colors flex items-center gap-1.5" aria-label="Cesta">
+            <button className="text-accent hover:text-ink transition-colors flex items-center gap-1.5" aria-label="Cesta">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
               </svg>
-              <span className="text-[11px] font-sans font-bold tracking-wider">{mounted ? getItemCount() : 0}</span>
+              <span className="text-[11px] font-sans font-bold tracking-wider">{itemCount}</span>
             </button>
           </div>
         </div>
@@ -217,7 +218,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="px-8 pb-8 flex flex-col gap-6 font-sans text-ink">
-                {menuItems.map((item) => (
+                {menuItems.filter(item => item.id !== 'taller' && item.id !== 'atelier').map((item) => (
                   <div key={item.id} className="flex flex-col border-b border-ink/5 pb-4">
                     <Link href={item.href} onClick={() => setIsOpen(false)} className="py-2 text-[13px] font-bold tracking-[0.15em] uppercase flex items-center justify-between">
                       {item.title}

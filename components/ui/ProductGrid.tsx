@@ -3,13 +3,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useCartStore } from '../../store/cartStore';
+import { useWaaSStoreBase } from '../../store/waasStore';
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-50px" },
-  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
 };
 
 export default function ProductGrid({ products }) {
@@ -35,7 +35,7 @@ export default function ProductGrid({ products }) {
               
               {/* Icono Wishlist - Aparece en hover */}
               <button 
-                className="absolute top-4 right-4 z-10 w-9 h-9 bg-base rounded-full shadow-md flex items-center justify-center text-ink/40 hover:text-burgundy opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out"
+                className="absolute top-2 right-2 md:top-4 md:right-4 z-10 min-w-[44px] min-h-[44px] bg-base rounded-full shadow-md flex items-center justify-center text-ink/40 hover:text-burgundy opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out"
                 aria-label="Añadir a la lista de deseos"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -56,7 +56,7 @@ export default function ProductGrid({ products }) {
                   </a>
                 ) : (
                   <button 
-                    onClick={(e) => { e.preventDefault(); useCartStore.getState().addItem(item); }}
+                    onClick={(e) => { e.preventDefault(); useWaaSStoreBase.getState().addItemToCart(item); }}
                     className="w-full bg-base/95 backdrop-blur py-3 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-ink hover:bg-accent hover:text-ink rounded shadow-lg transition-colors"
                   >
                     Añadir a la cesta

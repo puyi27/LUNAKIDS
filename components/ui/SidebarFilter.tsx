@@ -31,7 +31,7 @@ export default function SidebarFilter() {
         <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink mb-6 border-b border-ink/10 pb-2">
           Categoría
         </h3>
-        <ul className="space-y-4 font-sans text-[13px] text-ink/70">
+        <ul className="space-y-2 font-sans text-[13px] text-ink/70">
           {categories.map((cat) => {
             const isActive = pathname === cat.path;
             return (
@@ -39,7 +39,7 @@ export default function SidebarFilter() {
                 <Link 
                   href={cat.path} 
                   onClick={() => setMobileFiltersOpen(false)}
-                  className={`transition-colors ${isActive ? 'text-ink font-semibold' : 'hover:text-ink'}`}
+                  className={`flex items-center min-h-[44px] transition-colors ${isActive ? 'text-ink font-semibold' : 'hover:text-ink'}`}
                 >
                   {cat.name}
                 </Link>
@@ -54,10 +54,10 @@ export default function SidebarFilter() {
         <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink mb-6 border-b border-ink/10 pb-2">
           Por Evento
         </h3>
-        <ul className="space-y-4 font-sans text-[13px] text-ink/70">
+        <ul className="space-y-2 font-sans text-[13px] text-ink/70">
           {events.map((evt) => (
             <li key={evt}>
-              <label className="flex items-center gap-3 cursor-pointer group">
+              <label className="flex items-center gap-3 cursor-pointer group min-h-[44px]">
                 <div className="w-4 h-4 border border-ink/20 rounded-sm flex items-center justify-center group-hover:border-ink/50 transition-colors"></div>
                 <span className="group-hover:text-ink transition-colors">{evt}</span>
               </label>
@@ -75,7 +75,7 @@ export default function SidebarFilter() {
           {sizes.map((size) => (
             <button 
               key={size}
-              className="border border-ink/10 py-2 px-3 font-sans text-[11px] font-medium text-ink/60 hover:border-ink hover:text-ink transition-all duration-300 rounded"
+              className="border border-ink/10 px-3 font-sans text-[11px] font-medium text-ink/60 hover:border-ink hover:text-ink transition-all duration-300 rounded min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {size}
             </button>
@@ -91,7 +91,7 @@ export default function SidebarFilter() {
       <div className="md:hidden mb-6">
         <button 
           onClick={() => setMobileFiltersOpen(true)}
-          className="w-full flex items-center justify-center gap-2 border border-ink/20 py-3 rounded-full font-sans text-[11px] uppercase tracking-widest text-ink hover:bg-ink hover:text-white transition-colors"
+          className="w-full flex items-center justify-center gap-2 border border-ink/20 rounded-full font-sans text-[11px] uppercase tracking-widest text-ink hover:bg-ink hover:text-white transition-colors min-h-[44px]"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
           Filtrar Colección
@@ -118,7 +118,7 @@ export default function SidebarFilter() {
             >
               <div className="p-6 flex justify-between items-center border-b border-ink/5 bg-base sticky top-0 z-10">
                 <span className="font-serif italic text-lg text-ink">Filtros</span>
-                <button onClick={() => setMobileFiltersOpen(false)} className="p-2 -mr-2 text-ink/70 hover:text-ink">
+                <button onClick={() => setMobileFiltersOpen(false)} className="text-ink/70 hover:text-ink min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
               </div>

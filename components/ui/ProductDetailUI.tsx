@@ -3,16 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import { useCartStore } from '../../store/cartStore';
+import { useWaaSStoreBase } from '../../store/waasStore';
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
 };
 
-export default function ProductDetailUI({ product }) {
-  const addItem = useCartStore(state => state.addItem);
+export default function ProductDetailUI({ product }: any) {
 
   if (!product) return null;
 
@@ -29,7 +28,7 @@ export default function ProductDetailUI({ product }) {
 
         <motion.div 
           className="lg:col-span-5 flex flex-col justify-center"
-          initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="mb-6">
             <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-ink/50 font-bold border-b border-ink/10 pb-2">{product.mat || "Tejido Artesanal"}</span>
@@ -66,7 +65,7 @@ export default function ProductDetailUI({ product }) {
             </a>
           ) : (
             <button 
-              onClick={() => addItem(product)}
+              onClick={() => useWaaSStoreBase.getState().addItemToCart(product)}
               className="w-full bg-ink text-base py-5 font-sans text-[11px] uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-accent hover:text-ink transition-all duration-500 ease-out shadow-sm hover:shadow-md"
             >
               Añadir a la Cesta
