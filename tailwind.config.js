@@ -7,12 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: "#FAF8F5", // Lino cálido
-        ink: "#2C2A29", // Marengo/Ónix suave
-        accent: "#1A5E5C", // Verde Cerceta (Madroños)
-        burgundy: "#7A1C29", // Granate/Terciopelo
-        terracotta: "#C86B5E", // Terracota cálido (Vichy)
-        paper: "#ECE9E1"
+        base: "#FAF8F5",
+        ink: "#2C2A29",
+        accent: "#8C9A86", // Verde Salvia
+        burgundy: "#6C2232", // Granate/Burgundy
+        terracotta: "#C86B5E",
+        paper: "#ECE9E1",
+        softBeige: "#F5F2EA" // Beige Suave
       },
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],

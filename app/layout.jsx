@@ -17,7 +17,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Dancing+Script:wght@400..700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-sans bg-base min-h-screen relative" suppressHydrationWarning>
+      <body className="font-sans bg-linen min-h-screen relative" suppressHydrationWarning>
+        <div className="absolute inset-0 bg-magic opacity-40 pointer-events-none mix-blend-multiply fixed" />
         <Navbar />
         <main>{children}</main>
         <Footer />

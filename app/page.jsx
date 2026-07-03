@@ -14,7 +14,7 @@ const fadeUp = {
 
 export default function Home() {
   return (
-    <div className="pt-32 bg-base min-h-screen overflow-hidden">
+    <div className="pt-40 md:pt-48 min-h-screen overflow-hidden">
       
       {/* BLOQUE 1: Hero */}
       <section className="relative max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-12 items-center min-h-[85vh] md:min-h-[80vh] pb-12 md:pb-0 md:px-6">
@@ -80,13 +80,16 @@ export default function Home() {
       </section>
 
       {/* BLOQUE 2: Editorial / El Taller */}
-      <section className="py-24 md:py-32 px-6 max-w-[1400px] mx-auto bg-base relative">
+      <section className="py-24 md:py-32 px-6 max-w-[1400px] mx-auto relative">
         <div className="absolute -inset-x-10 inset-y-0 bg-plumeti opacity-40 pointer-events-none" />
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center relative z-10">
           <motion.div className="md:col-span-5 relative h-[60vh] md:h-[75vh]" {...fadeUp}>
-            <div className="absolute top-0 left-0 w-4/5 h-4/5 overflow-hidden z-10">
-              <img src="/img/galeria_1.png" alt="Detalle Taller Luna Kids" className="w-full h-full object-cover object-center mix-blend-multiply opacity-95" />
+            <div className="absolute top-0 left-0 w-4/5 h-4/5 overflow-hidden z-10 relative">
+              <div className="absolute -top-3 -left-3 z-20 text-accent rotate-[-15deg]">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 9l-4-4-2 2 4 4-4 4 2 2 4-4 4 4 2-2-4-4 4-4-2-2-4 4z"/></svg>
+              </div>
+              <img src="/img/galeria_1.png" alt="Detalle Taller Luna Kids" className="w-full h-full object-cover object-center mix-blend-multiply opacity-95 rounded-tl-xl" />
             </div>
             <div className="absolute bottom-0 right-0 w-3/5 h-3/5 overflow-hidden z-20 shadow-lg">
               <img src="/img/galeria_2.png" alt="Lifestyle Luna Kids" className="w-full h-full object-cover object-center" />
