@@ -17,29 +17,45 @@ export default function ProductGrid({ products }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-start">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-8 items-start">
       {products.map((item) => (
         <motion.div 
           key={item.id}
           className="w-full group cursor-pointer block"
           {...fadeUp}
         >
-          <Link href={`/producto/${item.id}`}>
-            <div className="aspect-[3/4] bg-paper mb-5 overflow-hidden rounded-xl relative border-[6px] border-paper shadow-sm transition-all duration-500 group-hover:shadow-lg">
-              <div className="w-full h-full rounded-lg overflow-hidden border-stitch">
-                <img src={item.img || "/prod_teal.png"} alt={item.name} className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 opacity-95 mix-blend-multiply" />
-              </div>
+          <div className="w-full h-full">
+            <div className="aspect-[3/4] mb-4 md:mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
+              <Link href={`/producto/${item.id}`} className="block w-full h-full">
+                <div className="w-full h-full relative">
+                  <img src={item.img || "/prod_teal.png"} alt={item.name} className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 mix-blend-multiply" />
+                </div>
+              </Link>
               
-              {/* Overlay sutil para hover */}
-              <div className="absolute inset-0 bg-burgundy/0 group-hover:bg-burgundy/10 transition-colors duration-500 pointer-events-none" />
+              {/* Icono Wishlist - Aparece en hover */}
+              <button 
+                className="absolute top-4 right-4 z-10 w-9 h-9 bg-base rounded-full shadow-md flex items-center justify-center text-ink/40 hover:text-burgundy opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out"
+                aria-label="Añadir a la lista de deseos"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+              </button>
+
+              {/* Botón Vista Rápida - Aparece en hover desde abajo */}
+              <div className="absolute bottom-4 left-0 w-full px-4 z-10 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 ease-out">
+                <button className="w-full bg-base/95 backdrop-blur py-3 text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-ink hover:bg-accent hover:text-base rounded shadow-lg transition-colors">
+                  Vista rápida
+                </button>
+              </div>
             </div>
             
-            <div className="flex flex-col items-center text-center px-2">
-              <h3 className="font-serif text-2xl text-ink mb-1">{item.name}</h3>
-              <p className="font-script text-xl text-terracotta mb-2">{item.mat || "Algodón & Lino"}</p>
-              <p className="font-sans text-sm font-semibold text-ink">€{item.price}</p>
-            </div>
-          </Link>
+            <Link href={`/producto/${item.id}`} className="flex flex-col items-center text-center px-1 md:px-2">
+              <h3 className="font-serif text-[15px] md:text-2xl text-ink mb-1 md:mb-2 font-medium tracking-wide">{item.name}</h3>
+              <p className="font-sans text-[11px] md:text-[13px] text-ink/60 uppercase tracking-[0.2em] mb-1.5 md:mb-2">{item.mat || "Algodón & Lino"}</p>
+              <p className="font-sans text-[13px] md:text-base text-ink tracking-wider">€{item.price}</p>
+            </Link>
+          </div>
         </motion.div>
       ))}
     </div>
