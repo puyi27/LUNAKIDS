@@ -11,9 +11,10 @@ export default function Footer() {
         
         {/* Brand & Medallion */}
         <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
-          <Link href="/" className="inline-flex flex-col items-center justify-center mb-6">
-            <img src="/logo_final.png" alt="Luna Kids" className="h-20 w-auto object-contain mix-blend-multiply mb-3" />
-            <span className="font-serif text-xl text-burgundy tracking-widest">LUNA KIDS</span>
+          <Link href="/" className="inline-flex flex-col items-center justify-center mb-6 group">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-base border border-ink/5 shadow-sm flex items-center justify-center mb-3">
+              <img src="/logo_final.png" alt="Luna Kids" className="w-[105%] h-[105%] object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500 rounded-full" />
+            </div>
           </Link>
           <p className="font-sans text-[11px] text-ink/70 leading-relaxed max-w-xs">
             Diseñamos y confeccionamos ropa infantil con el cariño de siempre. Desde nuestro taller en Sevilla para el mundo.

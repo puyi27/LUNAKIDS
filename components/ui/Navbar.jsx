@@ -128,16 +128,19 @@ export default function Navbar() {
 
           <div className="w-1/3 flex justify-center relative h-16">
             <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-50" style={{ top: scrolled ? '-8px' : '0' }}>
-              <div className={`rounded-full bg-base border border-ink/5 shadow-[0_4px_15px_-3px_rgba(0,0,0,0.1)] flex items-center justify-center relative transition-all duration-300 ${scrolled ? 'w-20 h-20' : 'w-32 h-32'}`} style={{ marginBottom: scrolled ? '0' : '-3rem' }}>
+              <div 
+                className={`rounded-full overflow-hidden bg-base border border-ink/5 shadow-md flex items-center justify-center relative transition-all duration-300 ${
+                  scrolled 
+                    ? 'w-16 h-16 md:w-20 md:h-20' 
+                    : 'w-32 h-32 md:w-48 md:h-48'
+                }`} 
+                style={{ marginBottom: scrolled ? '0' : '-3rem' }}
+              >
                 <img 
                   src="/logo_final.png" 
                   alt="Medallón Luna Kids" 
-                  className="w-[85%] h-[85%] object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" 
+                  className="w-[105%] h-[105%] object-cover mix-blend-multiply group-hover:scale-110 transition-transform duration-500 rounded-full" 
                 />
-              </div>
-              <div className={`flex flex-col items-center mt-2 transition-all duration-300 ${scrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`} style={{ paddingTop: '2.5rem' }}>
-                <h1 className="font-serif text-xl md:text-2xl text-burgundy tracking-wide leading-none">LUNA KIDS</h1>
-                <span className="font-sans text-[8px] md:text-[9px] uppercase tracking-[0.4em] font-semibold text-burgundy/80 mt-1">Moda Infantil</span>
               </div>
             </Link>
           </div>
