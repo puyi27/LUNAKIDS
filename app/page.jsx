@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import BrandPillars from '../components/ui/BrandPillars';
+import Bow from '../components/ui/Bow';
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -17,13 +18,18 @@ export default function Home() {
     <div className="pt-40 md:pt-48 min-h-screen overflow-hidden">
       
       {/* BLOQUE 1: Hero */}
-      <section className="relative max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-12 items-center min-h-[85vh] md:min-h-[80vh] pb-12 md:pb-0 md:px-6">
-        <div className="absolute top-0 right-0 w-2/3 h-full bg-vichy opacity-10 rounded-l-[100px] pointer-events-none mix-blend-multiply hidden md:block" />
+      <section className="relative max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-12 items-center min-h-[85vh] md:min-h-[80vh] pb-12 md:pb-0 md:px-6 bg-magic">
+        <div className="absolute top-0 right-0 z-10 hidden md:block">
+           <Bow />
+        </div>
 
         <motion.div 
-          className="md:col-span-6 flex flex-col justify-center order-2 md:order-1 relative z-10 px-6 md:px-0 mt-8 md:mt-0"
+          className="md:col-span-5 flex flex-col justify-center order-2 md:order-1 relative z-10 px-6 md:px-0 mt-8 md:mt-0"
           initial="initial" animate="whileInView" variants={fadeUp}
         >
+          <div className="absolute -left-4 top-10 hidden md:block rotate-12">
+             <Bow />
+          </div>
           <h1 className="text-5xl md:text-7xl font-serif text-ink leading-[1.05] tracking-tight mb-4 md:mb-6">
             Vestimos su infancia <br className="hidden md:block"/> con el cariño <br className="hidden md:block"/> de siempre.
           </h1>
@@ -40,11 +46,13 @@ export default function Home() {
         </motion.div>
         
         <motion.div 
-          className="md:col-span-6 h-[55vh] md:h-[80vh] w-full rounded-b-[40px] md:rounded-2xl md:rounded-t-[40%] overflow-hidden order-1 md:order-2 shadow-xl relative"
+          className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl"
           initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img src="/img/flamenca_blanca.png" alt="Moda Flamenca Luna Kids" className="w-full h-full object-cover object-top opacity-95" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none" />
+          <img src="/img/hero_main.png" alt="Luna Kids - Moda Infantil Sevilla" className="w-full h-full object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+          <div className="absolute bottom-4 left-4 z-10 rotate-[-20deg]">
+            <Bow />
+          </div>
         </motion.div>
       </section>
 
