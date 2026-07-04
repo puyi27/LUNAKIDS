@@ -119,7 +119,7 @@ export default function ProductDetailUI({ product }: { product: any }) {
           </div>
         </section>
 
-        <section className="w-full md:w-2/5 flex flex-col gap-8 sticky top-32">
+        <section className="w-full md:w-2/5 flex flex-col gap-8 md:sticky top-32">
           <nav className="flex gap-2 items-center font-sans text-[11px] uppercase tracking-widest text-ink/60">
             <span className="hover:text-ink transition-colors cursor-pointer">{product.category || "Couture"}</span>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>

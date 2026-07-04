@@ -12,7 +12,7 @@ export default function ShopLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-base pt-[60px] md:pt-[100px]">
+      <main className="min-h-screen bg-base pt-[90px] md:pt-[130px]">
         {children}
       </main>
       <Footer />
