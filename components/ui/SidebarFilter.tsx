@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const categories = [
   { name: 'Todo', path: '/coleccion' },
@@ -99,22 +98,15 @@ export default function SidebarFilter() {
       </div>
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
+      <>
         {mobileFiltersOpen && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <div
               onClick={() => setMobileFiltersOpen(false)}
               className="md:hidden fixed inset-0 bg-ink/20 backdrop-blur-sm z-[60]"
             />
-            <motion.div 
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col"
+            <div 
+              className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col transition-transform"
             >
               <div className="p-6 flex justify-between items-center border-b border-ink/5 bg-base sticky top-0 z-10">
                 <span className="font-serif italic text-lg text-ink">Filtros</span>
@@ -125,10 +117,10 @@ export default function SidebarFilter() {
               <div className="p-8">
                 <FilterContent />
               </div>
-            </motion.div>
+            </div>
           </>
         )}
-      </AnimatePresence>
+      </>
 
       {/* Desktop Sticky Sidebar */}
       <div className="hidden md:block sticky top-32">

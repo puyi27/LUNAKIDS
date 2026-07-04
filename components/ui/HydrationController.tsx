@@ -1,16 +1,11 @@
 "use client";
 
-import { useSyncExternalStore } from 'react';
+import { useEffect } from 'react';
 import { useWaaSStoreBase } from '../../store/waasStore';
 
 export function HydrationController() {
-  useSyncExternalStore(
-    () => () => {},
-    () => {
-      useWaaSStoreBase.persist.rehydrate();
-      return true;
-    },
-    () => false
-  );
+  useEffect(() => {
+    useWaaSStoreBase.persist.rehydrate();
+  }, []);
   return null;
 }

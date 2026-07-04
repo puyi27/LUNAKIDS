@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useWaaSStore } from '../../store/waasStore';
+import { useWaaSStore, useWaaSStoreBase } from '../../store/waasStore';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const cartItems = useWaaSStore((state: any) => state.items, []);
+  const setCartOpen = useWaaSStoreBase((state: any) => state.setCartOpen);
   const itemCount = cartItems ? cartItems.length : 0;
   const [hoveredMenu, setHoveredMenu] = useState(null);
 
@@ -105,13 +105,9 @@ export default function Navbar() {
                   <Link href={item.href} className="hover:text-accent transition-colors">
                     {item.title}
                   </Link>
-                  <AnimatePresence>
+                  <>
                     {hoveredMenu === item.id && item.submenus && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
+                      <div 
                         className="absolute top-full left-0 mt-0 w-48 bg-base border border-ink/10 shadow-lg py-3 flex flex-col z-50 rounded-b-md"
                       >
                         {item.submenus.map((sub, idx) => (
@@ -119,9 +115,9 @@ export default function Navbar() {
                             {sub.title}
                           </Link>
                         ))}
-                      </motion.div>
+                      </div>
                     )}
-                  </AnimatePresence>
+                  </>
                 </div>
               ))}
             </div>
@@ -157,13 +153,9 @@ export default function Navbar() {
                   <Link href={item.href} className="hover:text-accent transition-colors">
                     {item.title}
                   </Link>
-                  <AnimatePresence>
+                  <>
                     {hoveredMenu === item.id && item.submenus && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
+                      <div 
                         className="absolute top-full right-0 mt-0 w-48 bg-base border border-ink/10 shadow-lg py-3 flex flex-col z-50 rounded-b-md"
                       >
                         {item.submenus.map((sub, idx) => (
@@ -171,9 +163,9 @@ export default function Navbar() {
                             {sub.title}
                           </Link>
                         ))}
-                      </motion.div>
+                      </div>
                     )}
-                  </AnimatePresence>
+                  </>
                 </div>
               ))}
             </div>
@@ -183,7 +175,7 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
-            <button className="text-accent hover:text-ink transition-colors flex items-center gap-1.5" aria-label="Cesta">
+            <button onClick={() => setCartOpen(true)} className="text-accent hover:text-ink transition-colors flex items-center gap-1.5" aria-label="Cesta">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
               </svg>
@@ -193,22 +185,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
+      <>
         {isOpen && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <div
               onClick={() => setIsOpen(false)}
               className="md:hidden fixed inset-0 bg-ink/20 backdrop-blur-sm z-[60]"
             />
-            <motion.div 
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="md:hidden fixed top-0 left-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col"
+            <div 
+              className="md:hidden fixed top-0 left-0 h-full w-4/5 max-w-sm bg-linen shadow-2xl z-[70] overflow-y-auto flex flex-col transition-transform"
             >
               <div className="p-6 flex justify-end">
                 <button onClick={() => setIsOpen(false)} className="p-2 -mr-2 text-ink/70 hover:text-ink">
@@ -239,10 +224,10 @@ export default function Navbar() {
                 <Link href="/cuenta" onClick={() => setIsOpen(false)} className="block py-3 text-[11px] font-bold tracking-widest uppercase text-ink/70 hover:text-ink">Mi Cuenta</Link>
                 <Link href="/ayuda" onClick={() => setIsOpen(false)} className="block py-3 text-[11px] font-bold tracking-widest uppercase text-ink/70 hover:text-ink">Ayuda / FAQ</Link>
               </div>
-            </motion.div>
+            </div>
           </>
         )}
-      </AnimatePresence>
+      </>
     </nav>
   );
 }

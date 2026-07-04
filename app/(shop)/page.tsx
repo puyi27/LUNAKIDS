@@ -1,38 +1,48 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 import BrandPillars from '../../components/ui/BrandPillars';
 import Bow from '../../components/ui/Bow';
 
-const fadeUp = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
-};
-
 export default function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 5000, stopOnInteraction: false })]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi, setSelectedIndex]);
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current) {
+      const scrollPosition = scrollRef.current.scrollLeft;
+      const width = scrollRef.current.clientWidth;
+      const index = Math.round(scrollPosition / width);
+      setSelectedIndex(index);
+    }
+  }, []);
+
+  const scrollTo = useCallback((index: number) => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
+    }
+  }, []);
 
   useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
-
-  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const width = scrollRef.current.clientWidth;
+        const maxScroll = scrollRef.current.scrollWidth - width;
+        const nextScroll = scrollRef.current.scrollLeft + width;
+        
+        // Use a small epsilon to account for rounding errors in scroll position
+        if (nextScroll > maxScroll + 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollTo({ left: nextScroll, behavior: 'smooth' });
+        }
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="pt-40 md:pt-48 min-h-screen overflow-hidden">
@@ -43,9 +53,8 @@ export default function Home() {
            <Bow />
         </div>
 
-        <motion.div 
-          className="md:col-span-5 flex flex-col justify-center order-2 md:order-1 relative z-10 px-6 md:px-0 mt-8 md:mt-0"
-          initial="initial" animate="whileInView" variants={fadeUp}
+        <div 
+          className="md:col-span-5 flex flex-col justify-center order-2 md:order-1 relative z-10 px-6 md:px-0 mt-8 md:mt-0 animate-fade-in-up"
         >
           <div className="absolute -left-4 top-10 hidden md:block rotate-12">
              <Bow />
@@ -63,28 +72,32 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </div>
-        </motion.div>
+        </div>
         
-        <motion.div 
-          className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl"
-          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const }}
+        <div 
+          className="md:col-span-7 h-[65vh] md:h-[80vh] w-full relative order-1 md:order-2 overflow-hidden shadow-sm md:rounded-bl-3xl animate-fade-in-up"
         >
-          <div className="overflow-hidden w-full h-full cursor-grab active:cursor-grabbing" ref={emblaRef}>
-            <div className="flex h-full">
-              <div className="flex-[0_0_100%] min-w-0 relative">
-                <Image src="/img/flamenca_blanca.png" alt="Luna Kids - Colección" fill priority sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 20%' }} />
-              </div>
-              <div className="flex-[0_0_100%] min-w-0 relative">
-                <Image src="/img/galeria_4.png" alt="Luna Kids - Ceremonia" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
-              </div>
-              <div className="flex-[0_0_100%] min-w-0 relative">
-                <Image src="/img/ninas_vichy.png" alt="Luna Kids - Diario" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
-              </div>
-              <div className="flex-[0_0_100%] min-w-0 relative">
-                <Image src="/img/galeria_3.png" alt="Luna Kids - Taller" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 15%' }} />
-              </div>
+          {/* NATIVE CSS CAROUSEL */}
+          <div 
+            className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide" 
+            ref={scrollRef}
+            onScroll={handleScroll}
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex-[0_0_100%] min-w-0 relative snap-center">
+              <Image src="/img/flamenca_blanca.png" alt="Luna Kids - Colección" fill priority sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 20%' }} />
+            </div>
+            <div className="flex-[0_0_100%] min-w-0 relative snap-center">
+              <Image src="/img/galeria_4.png" alt="Luna Kids - Ceremonia" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
+            </div>
+            <div className="flex-[0_0_100%] min-w-0 relative snap-center">
+              <Image src="/img/ninas_vichy.png" alt="Luna Kids - Diario" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" />
+            </div>
+            <div className="flex-[0_0_100%] min-w-0 relative snap-center">
+              <Image src="/img/galeria_3.png" alt="Luna Kids - Taller" fill sizes="(max-width: 768px) 100vw, 60vw" className="object-cover object-center" style={{ objectPosition: 'center 15%' }} />
             </div>
           </div>
+
           <div className="absolute bottom-4 left-4 z-10 rotate-[-20deg]">
             <Bow />
           </div>
@@ -104,16 +117,15 @@ export default function Home() {
               />
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       <BrandPillars />
 
       {/* BLOQUE ESPECIAL: Colección Madre e Hija (Mini-Me) */}
       <section className="py-24 px-6 max-w-[1400px] mx-auto">
-        <motion.div 
-          className="relative w-full rounded-3xl overflow-hidden shadow-2xl group cursor-pointer"
-          initial="initial" animate="whileInView" variants={fadeUp}
+        <div 
+          className="relative w-full rounded-3xl overflow-hidden shadow-2xl group cursor-pointer animate-fade-in-up"
         >
           {/* Fondo Imagen Real */}
           <div className="absolute inset-0 w-full h-full">
@@ -135,7 +147,7 @@ export default function Home() {
               Ver conjuntos a juego
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* BLOQUE 2: Editorial / El Taller */}
@@ -143,7 +155,7 @@ export default function Home() {
         <div className="absolute -inset-x-10 inset-y-0 bg-plumeti opacity-40 pointer-events-none" />
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center relative z-10">
-          <motion.div className="md:col-span-5 relative h-[60vh] md:h-[75vh]" {...fadeUp}>
+          <div className="md:col-span-5 relative h-[60vh] md:h-[75vh] animate-fade-in-up">
             <div className="absolute top-0 left-0 w-4/5 h-4/5 overflow-hidden z-10 relative">
               <div className="absolute -top-3 -left-3 z-20 text-accent rotate-[-15deg]">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 9l-4-4-2 2 4 4-4 4 2 2 4-4 4 4 2-2-4-4 4-4-2-2-4 4z"/></svg>
@@ -153,9 +165,9 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 w-3/5 h-3/5 overflow-hidden z-20 shadow-lg">
               <img src="/img/galeria_2.png" alt="Lifestyle Luna Kids" className="w-full h-full object-cover object-center" />
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div className="md:col-span-6 md:col-start-7 p-6 md:p-12" {...fadeUp}>
+          <div className="md:col-span-6 md:col-start-7 p-6 md:p-12 animate-fade-in-up">
             <p className="font-script text-2xl text-accent mb-4">Nuestro proceso</p>
             <h2 className="text-3xl md:text-5xl font-serif text-ink italic mb-6 leading-tight">La importancia <br className="hidden md:block"/>de lo hecho a mano.</h2>
             <p className="text-[15px] font-sans text-ink/80 leading-[2] font-medium mb-6">
@@ -171,20 +183,20 @@ export default function Home() {
                 <p className="font-sans text-[11px] uppercase tracking-widest text-terracotta">Materiales de origen sostenible</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* BLOQUE 3: Colecciones Destacadas */}
       <section className="py-24 md:py-32 px-6 max-w-[1400px] mx-auto border-t border-ink/5">
         <div className="text-center mb-16 md:mb-24">
-          <motion.p className="font-sans text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-4" {...fadeUp}>Nuestras Líneas</motion.p>
-          <motion.h2 className="text-4xl md:text-5xl font-serif text-ink" {...fadeUp}>Colección Destacada</motion.h2>
+          <p className="font-sans text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-4 animate-fade-in-up">Nuestras Líneas</p>
+          <h2 className="text-4xl md:text-5xl font-serif text-ink animate-fade-in-up">Colección Destacada</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           
-          <motion.div className="group cursor-pointer" {...fadeUp}>
+          <div className="group cursor-pointer animate-fade-in-up">
             <Link href="/coleccion/flamenca">
               <div className="aspect-[3/4] mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
                 <div className="w-full h-full relative">
@@ -202,9 +214,9 @@ export default function Home() {
                 <p className="font-script text-xl md:text-2xl text-terracotta/80">Trajes de flamenca artesanales</p>
               </div>
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div className="group cursor-pointer md:translate-y-12" {...fadeUp}>
+          <div className="group cursor-pointer md:translate-y-12 animate-fade-in-up">
             <Link href="/coleccion">
               <div className="aspect-[3/4] mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
                 <div className="w-full h-full relative">
@@ -222,9 +234,9 @@ export default function Home() {
                 <p className="font-script text-xl md:text-2xl text-terracotta/80">Linos crudos y terciopelo</p>
               </div>
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div className="group cursor-pointer" {...fadeUp}>
+          <div className="group cursor-pointer animate-fade-in-up">
             <Link href="/coleccion/batas">
               <div className="aspect-[3/4] mb-6 overflow-hidden relative transition-opacity duration-500 group-hover:opacity-90">
                 <div className="w-full h-full relative">
@@ -242,7 +254,7 @@ export default function Home() {
                 <p className="font-script text-xl md:text-2xl text-terracotta/80">Batas vichy y plumetis ligeros</p>
               </div>
             </Link>
-          </motion.div>
+          </div>
           
         </div>
       </section>

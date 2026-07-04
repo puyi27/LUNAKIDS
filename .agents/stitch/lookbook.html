@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L'Atelier Petit - The Lookbook</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        .image-hover-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        .image-hover-wrapper:hover .floating-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#494645",
+                        "surface-container": "#f2edea",
+                        "secondary-container": "#e7e1df",
+                        "on-error": "#ffffff",
+                        "tertiary": "#433d35",
+                        "outline": "#6f7978",
+                        "on-tertiary-fixed": "#201b14",
+                        "inverse-primary": "#93d2cf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#00504e",
+                        "primary-container": "#1a5e5c",
+                        "secondary-fixed-dim": "#cac5c4",
+                        "secondary": "#615e5c",
+                        "on-secondary-fixed": "#1d1b1a",
+                        "tertiary-fixed": "#ebe1d5",
+                        "on-tertiary-container": "#d2c8bd",
+                        "tertiary-container": "#5b544b",
+                        "surface-variant": "#e7e1df",
+                        "on-tertiary-fixed-variant": "#4c463d",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fef8f5",
+                        "tertiary-fixed-dim": "#cfc5ba",
+                        "surface-dim": "#ded9d6",
+                        "secondary-fixed": "#e7e1df",
+                        "primary": "#004644",
+                        "on-primary-container": "#96d5d2",
+                        "surface-container-high": "#ece7e4",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1d1b1a",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3f4948",
+                        "primary-fixed-dim": "#93d2cf",
+                        "outline-variant": "#bfc8c7",
+                        "on-primary-fixed": "#00201f",
+                        "surface-tint": "#276866",
+                        "inverse-surface": "#32302e",
+                        "primary-fixed": "#aeeeeb",
+                        "error": "#ba1a1a",
+                        "background": "#fef8f5",
+                        "surface-container-highest": "#e7e1df",
+                        "surface": "#fef8f5",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f5f0ed",
+                        "surface-container-low": "#f8f2f0",
+                        "on-surface": "#1d1b1a",
+                        "on-secondary-container": "#676462",
+                        "brand-terracotta": "#C86B5E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["EB Garamond"],
+                        "label-lg": ["Inter"],
+                        "headline-md": ["EB Garamond"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["EB Garamond"],
+                        "display-lg-mobile": ["EB Garamond"],
+                        "headline-sm": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#FAF8F5] text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="bg-surface dark:bg-surface sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<!-- Mobile Menu Icon (Placeholder) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Brand Logo -->
+<a class="font-headline-md text-headline-md text-primary dark:text-primary-fixed" href="#">
+                L'Atelier Petit
+            </a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex space-x-gutter items-center">
+<a class="font-label-lg text-label-lg uppercase tracking-wider text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-lg text-label-lg uppercase tracking-wider text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Artisanal</a>
+<a class="font-label-lg text-label-lg uppercase tracking-wider text-primary dark:text-primary-fixed border-b border-primary dark:border-primary-fixed pb-1" href="#">The Lookbook</a>
+<a class="font-label-lg text-label-lg uppercase tracking-wider text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Heritage</a>
+</nav>
+<!-- Trailing Icons -->
+<div class="flex space-x-stack-sm items-center">
+<button class="text-primary hover:text-primary-container transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="text-primary hover:text-primary-container transition-colors p-2">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content: Lookbook Masonry Grid -->
+<main class="flex-grow px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto w-full">
+<div class="text-center mb-section-gap">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-md">Colección Atemporal</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">Una celebración de la artesanía infantil, donde cada hilo cuenta una historia bajo el sol andaluz.</p>
+</div>
+<div class="masonry-grid">
+<!-- Text Block 1 -->
+<div class="masonry-item p-stack-lg bg-surface-container rounded-xl flex flex-col justify-center min-h-[300px]">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-md">Puntadas que susurran historias</h2>
+<p class="font-body-md text-body-md text-secondary">Cada vestido nace de la tradición. Manos expertas que bordan con delicadeza, creando piezas que trascienden el tiempo y capturan la inocencia de la infancia.</p>
+</div>
+<!-- Image 1 -->
+<div class="masonry-item image-hover-wrapper relative overflow-hidden rounded-xl bg-surface-container-high group">
+<img alt="" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLtsdaglki00vBDzFuuL_AqKyojLb40DaTPCvkvvVfCLLNHLTknyJcRmgwLv9uFkwyiC68dYjs5sFbgw7B9OKcRJiryUhiuLLnwBox1cPcBM1WFrQWxiEJgtDFjZkzf6DgooUNpZpE3nwiyMzb7KRYbBcWN0unz9JIYUxP9xWFrbcvl23DK-4R_JEPF2OMhaSjPgCbXlT1MyhwEcZ510BdaGINiU4ROgTitWTP2pcB2xlekIrFcCZYnKJi4"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<button class="floating-btn absolute bottom-stack-md right-stack-md bg-white/70 backdrop-blur-md font-label-md text-label-md text-primary px-4 py-2 rounded-full opacity-0 translate-y-4 transition-all duration-300 flex items-center gap-2 shadow-lg hover:bg-white">
+                    Ver detalles <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Image 2 -->
+<div class="masonry-item image-hover-wrapper relative overflow-hidden rounded-xl bg-surface-container-high group">
+<img alt="" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkN1FDHQu9O58w0Uhk-qG2fFmTJEoDNC4ihBbHGKG5nxNX3JgNioWRVJSB1nNcO7j5yfT496cTAzm9IY94rV0kHANUBEhDdu9ac0pOmGR0M8R3LM110dQUfYm_JwMWmUsNE70EoVPz37Rxt1GNQqwjGcJEmoc0BNtyGysLWWyyYFeZX-nn_SLOj9YcU1wgvmQNX8HemrZG8GnV7zdCzaxZjfk5S7957L3MshN8qUqLHuOdozHJNV6D4MSRpgDjY-C_V4Ep6655pGU"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<button class="floating-btn absolute bottom-stack-md right-stack-md bg-white/70 backdrop-blur-md font-label-md text-label-md text-primary px-4 py-2 rounded-full opacity-0 translate-y-4 transition-all duration-300 flex items-center gap-2 shadow-lg hover:bg-white">
+                    Ver detalles <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<div class="absolute top-stack-md left-stack-md bg-surface/90 px-3 py-1 rounded font-label-md text-brand-terracotta">
+                    €185
+                </div>
+</div>
+<!-- Text Block 2 -->
+<div class="masonry-item p-stack-lg flex flex-col justify-center min-h-[250px]">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-sm">El arte de coser el tiempo</h2>
+<div class="w-12 h-1 bg-brand-terracotta mb-stack-md"></div>
+<p class="font-body-md text-body-md text-secondary">Materiales nobles, linos puros y encajes que recuerdan a las tardes de verano. Una oda a la lentitud y al trabajo bien hecho.</p>
+</div>
+<!-- Image 3 -->
+<div class="masonry-item image-hover-wrapper relative overflow-hidden rounded-xl bg-surface-container-high group">
+<img alt="" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrZs5M_JVU8dpHQqTUIKjdcUXQsBVY-y6CgkJ3zgRjeS40RooL_jvRiZif5yHgZ8ZDXjSLY6mWX7fiS-QY3BW_Sp3woiHO1T_tblfZqf7NxltqbNppe_v2Rs_lu_sz6fpa_W5FO3xe8PC78ev9dy4DQNYVXpHjsruD3MzP3K8X0xm7juqUcwqPjmKAu9XyWIzKicXWvG_JT2hTQennrNGj7FLXPqoinOtpDTPtz9iQx4mGPxdJJ9Lj77EH_7SLfjTApUeb-6u73yM"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<button class="floating-btn absolute bottom-stack-md right-stack-md bg-white/70 backdrop-blur-md font-label-md text-label-md text-primary px-4 py-2 rounded-full opacity-0 translate-y-4 transition-all duration-300 flex items-center gap-2 shadow-lg hover:bg-white">
+                    Ver detalles <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Text Block 3 -->
+<div class="masonry-item p-stack-lg bg-surface-container-low border border-surface-dim rounded-xl flex flex-col justify-center min-h-[350px]">
+<span class="material-symbols-outlined text-brand-terracotta text-4xl mb-stack-md">dry_cleaning</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-stack-md">Herencia bordada bajo el sol de Sevilla</h2>
+<p class="font-body-md text-body-md text-secondary">Diseños que se heredan, que guardan la memoria de los primeros pasos y las risas en el campo. Vestimos momentos inolvidables.</p>
+</div>
+<!-- Image 4 -->
+<div class="masonry-item image-hover-wrapper relative overflow-hidden rounded-xl bg-surface-container-high group">
+<img alt="" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj6QTLagkBKfcnJ_dNxmDd_i6PnT4ZFqlf-j6iaNf3TgWUTg8TtxpAhWULAdc_mJqyL7TdKxitskbsN-JGIi9NhBAyg_KaL1vQVMBXEJvW1ucXY-ImuxtGIxZusdlTNhcy3l96z-8qNwFk0bHGlDflH0rOAHhICmPKdoQciIVP6tG1cPatBF2vRpkQQBBz6qJtlfJgxDPzgTqAnx5MnvxpwI8ebFMkRDO9CyPAt480RC7KHm7JaihTloJxMdyBML5oaL8hCwC3llY"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<button class="floating-btn absolute bottom-stack-md right-stack-md bg-white/70 backdrop-blur-md font-label-md text-label-md text-primary px-4 py-2 rounded-full opacity-0 translate-y-4 transition-all duration-300 flex items-center gap-2 shadow-lg hover:bg-white">
+                    Ver detalles <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<div class="absolute top-stack-md left-stack-md bg-surface/90 px-3 py-1 rounded font-label-md text-brand-terracotta">
+                    €210
+                </div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container dark:bg-surface-container w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-stack-lg mt-section-gap max-w-container-max mx-auto">
+<div class="mb-stack-md md:mb-0">
+<span class="font-headline-sm text-headline-sm text-primary">
+                    L'Atelier Petit
+                </span>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-stack-md gap-y-stack-sm mb-stack-md md:mb-0">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Shipping</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Contact</a>
+</nav>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface dark:text-on-surface">
+                    © 2024 L'Atelier Petit. Crafted in Seville.
+                </span>
+</div>
+</div>
+</footer>
+</body></html>

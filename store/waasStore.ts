@@ -17,6 +17,8 @@ export interface ProductPayload {
 export interface WaaSCartState {
   items: ProductPayload[];
   wishlist: ProductPayload[];
+  isCartOpen: boolean;
+  setCartOpen: (isOpen: boolean) => void;
   addItemToCart: (item: ProductPayload) => void;
   removeItemFromCart: (id: string) => void;
   toggleWishlist: (item: ProductPayload) => void;
@@ -29,8 +31,10 @@ export const useWaaSStoreBase = create<WaaSCartState>()(
     (set, get) => ({
       items: [],
       wishlist: [],
+      isCartOpen: false,
+      setCartOpen: (isOpen) => set({ isCartOpen: isOpen }),
       addItemToCart: (item) =>
-        set((state) => ({ items: [...state.items, item] })),
+        set((state) => ({ items: [...state.items, item], isCartOpen: true })),
       removeItemFromCart: (id) =>
         set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
       toggleWishlist: (item) =>
