@@ -49,24 +49,6 @@ export default function Home() {
   const bow3Y = useTransform(springScroll, [0, 1], [0, -500]);
   const bow4Y = useTransform(springScroll, [0, 1], [0, 400]);
 
-  // Scroll animations for "Nuestro Proceso"
-  const processRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: processProgress } = useScroll({
-    target: processRef,
-    offset: ["0 1", "0.6 1"]
-  });
-
-  const p1X = useTransform(processProgress, [0, 1], [-100, 0]);
-  const p1Rotate = useTransform(processProgress, [0, 1], [-25, -8]);
-  const p1Opacity = useTransform(processProgress, [0, 1], [0, 1]);
-
-  const p2Y = useTransform(processProgress, [0, 1], [150, 0]);
-  const p2Rotate = useTransform(processProgress, [0, 1], [25, 4]);
-  const p2Opacity = useTransform(processProgress, [0, 1], [0, 1]);
-
-  const textX = useTransform(processProgress, [0, 1], [50, 0]);
-  const textOpacity = useTransform(processProgress, [0, 1], [0, 1]);
-
   const carouselImages = [
     { src: "/img/flamenca_blanca.png", name: "Traje Flamenca Blanca", link: "/producto/1" },
     { src: "/img/galeria_4.png", name: "Vestido Ceremonia", link: "/producto/2" },
@@ -297,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* 2. EL TALLER: Collage Asimétrico con Parallax Extremo (Overlapping) */}
-      <section ref={processRef} className="pt-8 pb-24 md:pt-16 md:pb-40 px-6 max-w-[1400px] mx-auto relative z-20">
+      <section className="pt-8 pb-24 md:pt-16 md:pb-40 px-6 max-w-[1400px] mx-auto relative z-20">
         <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-12 relative">
           
           {/* Mancha de color de fondo (Glassmorphism) */}
@@ -312,8 +294,12 @@ export default function Home() {
             
             {/* Polaroid Secundaria (Fondo) */}
             <motion.div 
-              style={{ x: p1X, rotate: p1Rotate, opacity: p1Opacity, willChange: 'transform, opacity' }}
               className="absolute top-0 md:top-10 left-0 w-[70%] md:w-[60%] z-10 bg-base p-3 md:p-5 pb-14 md:pb-20 shadow-[0_20px_50px_-12px_rgba(44,42,41,0.15)] rounded-sm border border-ink/5"
+              initial={{ opacity: 0, rotate: -25, y: 50, x: -50 }}
+              whileInView={{ opacity: 1, rotate: -8, y: 0, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              style={{ willChange: 'transform, opacity' }}
               whileHover={{ rotate: -2, scale: 1.05, zIndex: 30 }}
             >
               <div className="w-full aspect-[3/4] relative overflow-hidden bg-ink/5 group">
@@ -326,8 +312,12 @@ export default function Home() {
 
             {/* Polaroid Principal (Frente) */}
             <motion.div 
-              style={{ y: p2Y, rotate: p2Rotate, opacity: p2Opacity, willChange: 'transform, opacity' }}
               className="absolute bottom-10 right-0 w-[80%] md:w-[75%] z-20 bg-base p-3 md:p-5 pb-14 md:pb-20 shadow-[0_25px_60px_-15px_rgba(44,42,41,0.3)] rounded-sm border border-ink/5"
+              initial={{ opacity: 0, rotate: 20, y: 100 }}
+              whileInView={{ opacity: 1, rotate: 4, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+              style={{ willChange: 'transform, opacity' }}
               whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }}
             >
               <motion.div 
@@ -348,8 +338,12 @@ export default function Home() {
 
           {/* Texto Descriptivo Minimalista */}
           <motion.div 
-            style={{ x: textX, opacity: textOpacity, willChange: 'transform, opacity' }}
             className="w-full md:w-1/2 order-1 md:order-2 relative z-30 md:-ml-12"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="bg-base/70 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-[0_20px_60px_rgba(44,42,41,0.08)] border border-white/60 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/15 rounded-full blur-3xl -z-10" />
