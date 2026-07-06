@@ -126,10 +126,10 @@ export default function Home() {
       </div>
 
       {/* 1. HERO: Cinematográfico */}
-      <section className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-8 items-center min-h-[90vh] md:min-h-screen pb-12 md:pb-0 z-10 pt-20 md:pt-0">
+      <section className="relative w-full max-w-[1400px] mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-8 items-center min-h-[90vh] md:min-h-screen pb-12 md:pb-0 z-10 pt-20 md:pt-0">
         
         <motion.div 
-          className="md:col-span-5 flex flex-col justify-center relative z-20 px-6 md:pl-16 xl:pl-32 mt-0 md:mt-0 max-w-2xl"
+          className="md:col-span-5 flex flex-col justify-center relative z-20 md:pl-8 xl:pl-12 mt-0 md:mt-0 max-w-2xl"
           style={{ y: yHeroBg }}
         >
           {/* Lazo Anclado al texto */}
@@ -198,12 +198,12 @@ export default function Home() {
         
         {/* Slider Hero de una foto (Crossfade + Swipe) */}
         <motion.div 
-          className="md:col-span-7 w-full flex flex-col relative mt-2 md:mt-0 px-6 md:px-0"
+          className="md:col-span-7 w-full flex flex-col relative mt-2 md:mt-0 md:px-0"
           initial={{ opacity: 0, scale: 0.95, x: 40 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
         >
-          <div className="h-[55vh] md:h-[90vh] w-full relative overflow-hidden rounded-2xl md:rounded-l-[4rem] group shadow-2xl">
+          <div className="h-[55vh] md:h-[85vh] w-full relative overflow-hidden rounded-2xl md:rounded-[3rem] group shadow-2xl">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentHeroIndex}
@@ -384,12 +384,12 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <div className="w-full px-6 md:pl-[calc((100vw-1400px)/2+24px)] relative z-10">
-          <div className="flex gap-6 md:gap-12 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="w-full max-w-[1400px] mx-auto px-6 relative z-10">
+          <div className="flex flex-nowrap gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4 md:justify-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             
             {/* Tarjeta 1 */}
             <motion.div 
-              className="flex-[0_0_85%] md:flex-[0_0_480px] snap-center group cursor-pointer"
+              className="flex-[0_0_85%] md:flex-1 snap-center group cursor-pointer"
               whileHover={{ y: -20, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
@@ -413,7 +413,7 @@ export default function Home() {
 
             {/* Tarjeta 2 */}
             <motion.div 
-              className="flex-[0_0_85%] md:flex-[0_0_480px] snap-center group cursor-pointer"
+              className="flex-[0_0_85%] md:flex-1 snap-center group cursor-pointer"
               whileHover={{ y: -20, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
@@ -436,7 +436,7 @@ export default function Home() {
 
             {/* Tarjeta 3 */}
             <motion.div 
-              className="flex-[0_0_85%] md:flex-[0_0_480px] snap-center group cursor-pointer"
+              className="flex-[0_0_85%] md:flex-1 snap-center group cursor-pointer"
               whileHover={{ y: -20, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >

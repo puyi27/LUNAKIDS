@@ -5,6 +5,7 @@ import { HydrationController } from '../components/ui/HydrationController';
 import { BottomNav } from '../components/ui/BottomNav';
 import Footer from '../components/ui/Footer';
 import AtelierClubModal from '../components/ui/AtelierClubModal';
+import AtelierContactModal from '../components/ui/AtelierContactModal';
 import { SmoothScroll } from '../components/ui/SmoothScroll';
 
 const montserrat = Montserrat({
@@ -69,12 +70,13 @@ export default function RootLayout({
       <body className="font-sans min-h-screen bg-linen text-ink selection:bg-accent selection:text-base relative" suppressHydrationWarning>
         <SmoothScroll>
           <HydrationController />
-          <div className="absolute inset-0 bg-magic opacity-40 pointer-events-none mix-blend-multiply fixed" />
+          <div className="absolute inset-0 bg-magic opacity-20 md:opacity-40 pointer-events-none md:mix-blend-multiply mix-blend-normal fixed" style={{ willChange: 'transform' }} />
           <main className="relative flex flex-col w-full overflow-x-hidden pb-20 md:pb-0">
             {children}
           </main>
           <Footer />
           <AtelierClubModal />
+          <AtelierContactModal />
           <BottomNav />
         </SmoothScroll>
       </body>

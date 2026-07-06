@@ -2,10 +2,12 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useWaaSStoreBase } from '../../store/waasStore';
+import { useAtelierStore } from '../../store/atelierStore';
 import Image from 'next/image';
 import WhatsAppButton from './WhatsAppButton';
 import ProductGrid from './ProductGrid';
 import { MOCK_PRODUCTS } from '../../lib/data';
+import { motion } from 'framer-motion';
 
 export default function ProductDetailUI({ product }: { product: any }) {
   const sizes = [2, 4, 6, 8, 10, 12];
@@ -193,15 +195,14 @@ export default function ProductDetailUI({ product }: { product: any }) {
 
           <div className="mt-8 flex flex-col gap-4">
             {product.isAtelier ? (
-              <a 
-                href={`https://wa.me/34619172134?text=${encodeURIComponent(`Hola, estoy interesada en el servicio Atelier para el artículo: ${product.name}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 bg-accent text-base rounded font-sans text-[12px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-accent/90 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-[0_8px_20px_rgba(26,94,92,0.2)] hover:shadow-[0_12px_24px_rgba(26,94,92,0.3)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] group text-center focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-accent/50"
-              >
-                <span className="material-symbols-outlined group-hover:-translate-y-1 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">candle</span>
-                Hablar con el Conserje del Atelier
-              </a>
+                <motion.button 
+                  onClick={(e) => { e.preventDefault(); useAtelierStore.getState().openModal(product.name); }}
+                  className="w-full bg-ink text-white font-sans text-[11px] uppercase tracking-[0.2em] font-bold py-5 rounded-none md:rounded-xl shadow-[0_8px_30px_rgba(44,42,41,0.15)] hover:bg-accent transition-colors flex justify-center items-center gap-3 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-ink"
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
+                  Solicitar Cita Atelier
+                </motion.button>
             ) : (
               <button 
                 onClick={() => useWaaSStoreBase.getState().addItemToCart({ ...product, size: selectedSize })}

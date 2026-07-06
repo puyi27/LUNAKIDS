@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useWaaSStoreBase } from '../../store/waasStore';
+import { useAtelierStore } from '../../store/atelierStore';
 
 const easeOut = [0.23, 1, 0.32, 1] as const;
 
@@ -102,15 +103,13 @@ export default function ProductGrid({ products }: { products: any[] }) {
 
                 <div className="absolute bottom-4 left-0 w-full px-4 z-10 opacity-0 md:group-hover:opacity-100 translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex justify-center pointer-events-none md:pointer-events-auto">
                   {item.isAtelier ? (
-                    <motion.a 
-                      href={`https://wa.me/34619172134?text=${encodeURIComponent(`Hola, estoy interesada en el servicio Atelier para el artículo: ${item.name}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button 
+                      onClick={(e) => { e.preventDefault(); useAtelierStore.getState().openModal(item.name); }}
                       className="w-full bg-base/90 backdrop-blur-md py-3 text-[11px] font-sans text-ink font-semibold tracking-widest uppercase rounded-lg shadow-[0_8px_20px_rgba(44,42,41,0.08)] hover:bg-base transition-colors text-center focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-ink/20 pointer-events-auto"
                       whileTap={{ scale: 0.97 }}
                     >
-                      Conserje VIP
-                    </motion.a>
+                      Cita Atelier
+                    </motion.button>
                   ) : (
                     <motion.button 
                       onClick={(e) => { e.preventDefault(); useWaaSStoreBase.getState().addItemToCart(item); }}
