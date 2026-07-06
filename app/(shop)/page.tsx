@@ -299,6 +299,7 @@ export default function Home() {
               whileInView={{ opacity: 1, rotate: -8, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ type: "spring", stiffness: 40, damping: 15 }}
+              style={{ willChange: 'transform, opacity' }}
               whileHover={{ rotate: -2, scale: 1.05, zIndex: 30 }}
             >
               <div className="w-full aspect-[3/4] relative overflow-hidden bg-ink/5 group">
@@ -341,6 +342,7 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ type: "spring", stiffness: 50, damping: 20 }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="bg-base/70 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-[0_20px_60px_rgba(44,42,41,0.08)] border border-white/60 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/15 rounded-full blur-3xl -z-10" />

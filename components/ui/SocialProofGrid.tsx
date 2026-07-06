@@ -44,6 +44,7 @@ export default function SocialProofGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: i * 0.1, duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               className="group block relative aspect-square rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
             >
               <img 
