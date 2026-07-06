@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 import { Montserrat, Cormorant, Dancing_Script } from 'next/font/google';
 import { HydrationController } from '../components/ui/HydrationController';
 import { BottomNav } from '../components/ui/BottomNav';
+import Footer from '../components/ui/Footer';
+import AtelierClubModal from '../components/ui/AtelierClubModal';
+import { SmoothScroll } from '../components/ui/SmoothScroll';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -37,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es-ES" className={`${montserrat.variable} ${cormorant.variable} ${dancingScript.variable} antialiased scroll-smooth`}>
+    <html lang="es-ES" className={`${montserrat.variable} ${cormorant.variable} ${dancingScript.variable} antialiased`}>
       <head>
         <script
           type="application/ld+json"
@@ -64,12 +67,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
       </head>
       <body className="font-sans min-h-screen bg-linen text-ink selection:bg-accent selection:text-base relative" suppressHydrationWarning>
-        <HydrationController />
-        <div className="absolute inset-0 bg-magic opacity-40 pointer-events-none mix-blend-multiply fixed" />
-        <main className="relative flex flex-col w-full overflow-x-hidden isolate pb-20 md:pb-0">
-          {children}
-        </main>
-        <BottomNav />
+        <SmoothScroll>
+          <HydrationController />
+          <div className="absolute inset-0 bg-magic opacity-40 pointer-events-none mix-blend-multiply fixed" />
+          <main className="relative flex flex-col w-full overflow-x-hidden pb-20 md:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <AtelierClubModal />
+          <BottomNav />
+        </SmoothScroll>
       </body>
     </html>
   );

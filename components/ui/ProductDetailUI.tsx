@@ -3,12 +3,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useWaaSStoreBase } from '../../store/waasStore';
 import Image from 'next/image';
+import WhatsAppButton from './WhatsAppButton';
+import ProductGrid from './ProductGrid';
+import { MOCK_PRODUCTS } from '../../lib/data';
 
 export default function ProductDetailUI({ product }: { product: any }) {
   const sizes = [2, 4, 6, 8, 10, 12];
   const [selectedSize, setSelectedSize] = useState(sizes[1]);
   const tapeRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+
+  const relatedProducts = MOCK_PRODUCTS.filter(p => p.category === product?.category && p.id !== product?.id).slice(0, 4);
 
   useEffect(() => {
     const handleMove = (e: PointerEvent) => {
@@ -234,6 +239,18 @@ export default function ProductDetailUI({ product }: { product: any }) {
 
         </section>
       </main>
+
+      {/* WhatsApp CTA Flotante */}
+      <WhatsAppButton />
+
+      {/* Completa el look (Cross-selling) */}
+      {relatedProducts.length > 0 && (
+        <section className="max-w-[1400px] mx-auto px-6 py-16 md:py-24 border-t border-ink/5 mt-10">
+          <h2 className="text-2xl md:text-4xl font-serif text-ink mb-2 text-center md:text-left">También te encantará</h2>
+          <p className="font-sans text-[12px] uppercase tracking-widest text-ink/50 mb-10 text-center md:text-left">Prendas recomendadas para completar tu look</p>
+          <ProductGrid products={relatedProducts} />
+        </section>
+      )}
     </>
   );
 }

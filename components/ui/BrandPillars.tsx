@@ -31,7 +31,7 @@ export default function BrandPillars() {
   ];
 
   return (
-    <section className="py-24 bg-base border-t border-b border-ink/5 relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-base border-t border-b border-ink/5 relative overflow-hidden">
       <div className="absolute inset-0 bg-plumeti opacity-20 pointer-events-none"></div>
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 md:pb-0 md:grid md:grid-cols-3 md:gap-12 lg:gap-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

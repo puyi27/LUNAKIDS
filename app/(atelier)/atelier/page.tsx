@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function Atelier() {
   return (
-    <div className="pt-32 min-h-screen bg-base">
+    <div className="pt-32 pb-24 md:pb-32 min-h-screen bg-base">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
         {/* Columna Izquierda: La Historia */}

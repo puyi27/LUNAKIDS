@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from '../../components/ui/Navbar';
+import { CartDrawer } from '../../components/ui/CartDrawer';
 
 export default function AtelierLayout({
   children,
@@ -7,7 +9,9 @@ export default function AtelierLayout({
 }) {
   return (
     <div className="bg-ink text-linen min-h-screen">
+      <Navbar />
       {children}
+      <CartDrawer />
     </div>
   );
 }
