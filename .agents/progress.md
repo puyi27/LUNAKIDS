@@ -7,6 +7,7 @@
 - **Despliegue:** Preparado para Vercel. `npm run verify` con 0 errores (Type checking exitoso en TS).
 
 ## Historial de Sesión (Últimos Cambios)
+- [2026-07-07] Optimización Móvil (Local): Desactivado `mix-blend-mode` y efectos parallax 3D en dispositivos móviles para garantizar 60 fps estables. Ajustado el filtro `backdrop-blur`.
 - [2026-07-07] UI/UX Dinamización: Implementado TextReveal (animaciones de revelado suave), envoltorios Magnetic para tactilidad sutil en botones, y nueva sección ValoresEditorial en la página principal siguiendo una estética clásica y rústica. Build verificado con 0 errores.
 - [2026-07-03] Fase 3 Completada: Configuración de SSR para Supabase, migración de catálogos estáticos a SQL (seed.sql), creación de middleware y Panel WaaS WaaS (CMS en `/admin`).
 - [2026-07-03] Fase 2 WaaS completada: TS estricto.

@@ -24,6 +24,20 @@ const sizes = [
 export default function SidebarFilter() {
   const pathname = usePathname();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+
+  const toggleEvent = (evt: string) => {
+    setSelectedEvents(prev => 
+      prev.includes(evt) ? prev.filter(e => e !== evt) : [...prev, evt]
+    );
+  };
+
+  const toggleSize = (size: string) => {
+    setSelectedSizes(prev => 
+      prev.includes(size) ? prev.filter(s => s !== size) : [...prev, size]
+    );
+  };
 
   const FilterContent = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div className="flex flex-col gap-10">
@@ -57,16 +71,25 @@ export default function SidebarFilter() {
           Por Evento
         </h3>
         <ul className="space-y-1 font-sans text-[13px] text-ink/70">
-          {events.map((evt) => (
-            <li key={evt}>
-              <label className="flex items-center justify-between cursor-pointer group min-h-[44px] px-3 py-1 rounded-lg hover:bg-ink/5 transition-colors">
-                <span className="group-hover:text-ink transition-colors">{evt}</span>
-                <div className="w-4 h-4 border border-ink/20 rounded-sm flex items-center justify-center group-hover:border-ink/50 transition-colors relative">
-                   <div className="w-2 h-2 bg-accent rounded-[1px] opacity-0 scale-0 transition-all duration-200 group-active:opacity-100 group-active:scale-100" />
-                </div>
-              </label>
-            </li>
-          ))}
+          {events.map((evt) => {
+            const isSelected = selectedEvents.includes(evt);
+            return (
+              <li key={evt}>
+                <label className="flex items-center justify-between cursor-pointer group min-h-[44px] px-3 py-1 rounded-lg hover:bg-ink/5 transition-colors">
+                  <span className={`${isSelected ? 'text-ink font-medium' : 'group-hover:text-ink'} transition-colors`}>{evt}</span>
+                  <div className={`w-4 h-4 border rounded-sm flex items-center justify-center transition-colors relative ${isSelected ? 'border-accent bg-accent/5' : 'border-ink/20 group-hover:border-ink/50'}`}>
+                     <input 
+                       type="checkbox" 
+                       className="absolute opacity-0 cursor-pointer"
+                       checked={isSelected}
+                       onChange={() => toggleEvent(evt)}
+                     />
+                     <div className={`w-2 h-2 bg-accent rounded-[1px] transition-all duration-200 ${isSelected ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
+                  </div>
+                </label>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -76,14 +99,18 @@ export default function SidebarFilter() {
           Talla
         </h3>
         <div className="flex flex-wrap gap-2 px-1">
-          {sizes.map((size) => (
-            <button 
-              key={size}
-              className="border border-ink/10 px-4 font-sans text-[11px] font-medium text-ink/60 hover:border-ink hover:text-ink hover:bg-ink/5 active:scale-95 transition-all duration-300 rounded-md min-h-[40px] flex items-center justify-center shadow-sm"
-            >
-              {size}
-            </button>
-          ))}
+          {sizes.map((size) => {
+            const isSelected = selectedSizes.includes(size);
+            return (
+              <button 
+                key={size}
+                onClick={() => toggleSize(size)}
+                className={`border px-4 font-sans text-[11px] font-medium transition-all duration-300 rounded-md min-h-[40px] flex items-center justify-center shadow-sm active:scale-95 ${isSelected ? 'border-accent bg-accent/5 text-accent' : 'border-ink/10 text-ink/60 hover:border-ink hover:text-ink hover:bg-ink/5'}`}
+              >
+                {size}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

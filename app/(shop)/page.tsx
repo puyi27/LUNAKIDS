@@ -113,10 +113,10 @@ export default function Home() {
     <div className="min-h-screen overflow-hidden bg-base relative" ref={containerRef}>
       
       {/* Background Textures */}
-      <div className="absolute inset-0 bg-plumeti opacity-40 pointer-events-none mix-blend-multiply fixed z-0" />
+      <div className="absolute inset-0 bg-plumeti opacity-20 md:opacity-40 pointer-events-none md:mix-blend-multiply fixed z-0" />
       
-      {/* FLOATING PARALLAX ELEMENTS (BACKGROUND) */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* FLOATING PARALLAX ELEMENTS (BACKGROUND) - DESKTOP ONLY */}
+      <div className="hidden md:block fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <motion.div style={{ y: bow1Y, rotate: springScroll }} className="absolute top-[20%] left-[5%] opacity-30 text-terracotta scale-150 blur-[1px]">
           <Bow />
         </motion.div>
@@ -313,7 +313,7 @@ export default function Home() {
               whileHover={{ rotate: -2, scale: 1.05, zIndex: 30 }}
             >
               <div className="w-full aspect-[3/4] relative overflow-hidden bg-ink/5 group">
-                <img src="/img/galeria_2.png" alt="Lifestyle Luna Kids" className="w-full h-full object-cover object-center mix-blend-multiply transition-transform duration-1000 group-hover:scale-110" />
+                <img src="/img/galeria_2.png" alt="Lifestyle Luna Kids" className="w-full h-full object-cover object-center md:mix-blend-multiply transition-transform duration-1000 group-hover:scale-110" />
               </div>
               <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 font-script text-ink/70 text-2xl md:text-3xl whitespace-nowrap rotate-[-3deg]">
                 Trazos y patrones
@@ -338,7 +338,7 @@ export default function Home() {
                 <Bow />
               </motion.div>
               <div className="w-full aspect-square relative overflow-hidden bg-ink/5 group">
-                <img src="/img/galeria_1.png" alt="Detalle Taller Luna Kids" className="w-full h-full object-cover object-center mix-blend-multiply transition-transform duration-1000 group-hover:scale-110" />
+                <img src="/img/galeria_1.png" alt="Detalle Taller Luna Kids" className="w-full h-full object-cover object-center md:mix-blend-multiply transition-transform duration-1000 group-hover:scale-110" />
               </div>
               <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 font-script text-ink/90 text-3xl md:text-4xl whitespace-nowrap rotate-[2deg]">
                 Sevilla, 2024
@@ -355,7 +355,7 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
             style={{ willChange: 'transform, opacity' }}
           >
-            <div className="bg-base/70 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-[0_20px_60px_rgba(44,42,41,0.08)] border border-white/60 relative overflow-hidden">
+            <div className="bg-base/80 backdrop-blur-md md:backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-[0_20px_60px_rgba(44,42,41,0.08)] border border-white/60 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/15 rounded-full blur-3xl -z-10" />
               
               <p className="font-script text-4xl md:text-5xl text-accent mb-4">Nuestro proceso</p>
@@ -384,7 +384,7 @@ export default function Home() {
       {/* 3. COLECCIÓN DESTACADA: Scroll Horizontal Nativo y Suave */}
       <section className="pt-24 pb-12 md:pt-32 md:pb-24 bg-ink text-base overflow-hidden relative rounded-t-[3rem] md:rounded-t-[5rem] z-30 shadow-[0_-30px_60px_rgba(0,0,0,0.15)]">
         
-        <div className="absolute inset-0 bg-plumeti opacity-10 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-plumeti opacity-5 md:opacity-10 md:mix-blend-overlay pointer-events-none" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto px-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end relative z-10">
