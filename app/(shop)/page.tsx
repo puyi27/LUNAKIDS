@@ -3,9 +3,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Playfair_Display } from "next/font/google";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import Bow from '../../components/ui/Bow';
 import SocialProofGrid from '../../components/ui/SocialProofGrid';
+import TextReveal from "../../components/ui/TextReveal";
+import Magnetic from "../../components/ui/Magnetic";
+import ValoresEditorial from "../../components/ui/ValoresEditorial";
+
+const playfair = Playfair_Display({ subsets: ["latin"], style: "italic" });
 
 const easeOut = [0.23, 1, 0.32, 1] as const;
 
@@ -178,21 +184,23 @@ export default function Home() {
               Boutique premium de moda infantil. Cada batita, vestido y traje de flamenca está confeccionado íntegramente a mano en nuestro taller de Sevilla, utilizando tejidos seleccionados de máxima calidad.
             </p>
             {/* Desktop Button: Elegant Editorial Style */}
-            <Link href="/coleccion" className="hidden md:inline-flex items-center gap-4 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative w-max">
-              <span className="relative pb-1">
-                Descubrir la colección
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-500" />
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-accent transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              </span>
-              <motion.svg 
-                className="w-4 h-4 text-accent" 
-                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </motion.svg>
-            </Link>
+            <Magnetic>
+              <Link href="/coleccion" className="hidden md:inline-flex items-center gap-4 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative w-max">
+                <span className="relative pb-1">
+                  Descubrir la colección
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-500" />
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-accent transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </span>
+                <motion.svg 
+                  className="w-4 h-4 text-accent" 
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </motion.svg>
+              </Link>
+            </Magnetic>
           </motion.div>
         </motion.div>
         
@@ -260,20 +268,22 @@ export default function Home() {
 
           {/* Mobile Button: Elegant Editorial Style (Below Carousel) */}
           <div className="md:hidden w-full flex flex-col items-center justify-center mt-12 mb-8 z-20">
-            <Link href="/coleccion" className="flex items-center gap-3 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative">
-              <span className="relative pb-1">
-                Colección Completa
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100" />
-              </span>
-              <motion.svg 
-                className="w-4 h-4 text-accent" 
-                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </motion.svg>
-            </Link>
+            <Magnetic>
+              <Link href="/coleccion" className="flex items-center gap-3 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative">
+                <span className="relative pb-1">
+                  Colección Completa
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100" />
+                </span>
+                <motion.svg 
+                  className="w-4 h-4 text-accent" 
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </motion.svg>
+              </Link>
+            </Magnetic>
           </div>
         </motion.div>
       </section>
@@ -349,20 +359,22 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/15 rounded-full blur-3xl -z-10" />
               
               <p className="font-script text-4xl md:text-5xl text-accent mb-4">Nuestro proceso</p>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-ink italic mb-6 leading-[1.1]">La magia de <br/>lo hecho a mano.</h2>
+              <TextReveal text="La magia de lo hecho a mano." className="text-5xl md:text-6xl lg:text-7xl font-serif text-ink italic mb-6 leading-[1.1]" delay={0.3} />
               
               <p className="text-[15px] md:text-[17px] font-sans text-ink/80 leading-[1.8] font-medium mb-10">
                 Diseño exclusivo y confección artesanal. Cuidamos cada puntada desde Sevilla para vestir a los más pequeños.
               </p>
               
-              <Link href="/taller" className="inline-flex items-center gap-3 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative">
-                <span className="relative pb-1">
-                  Ver nuestro taller
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-500" />
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-accent transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                </span>
-                <svg className="w-4 h-4 text-accent group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </Link>
+              <Magnetic>
+                <Link href="/taller" className="inline-flex items-center gap-3 text-ink font-sans text-[11px] uppercase tracking-[0.3em] font-bold group relative">
+                  <span className="relative pb-1">
+                    Ver nuestro taller
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink transform origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-500" />
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-accent transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  </span>
+                  <svg className="w-4 h-4 text-accent group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
 
@@ -464,7 +476,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. SOCIAL PROOF: El "Club" Luna Kids (Instagram Feed simulado) */}
+      {/* 4. VALORES EDITORIALES */}
+      <ValoresEditorial />
+
+      {/* 5. SOCIAL PROOF: El "Club" Luna Kids (Instagram Feed simulado) */}
       <div className="relative z-20">
         <SocialProofGrid />
       </div>
