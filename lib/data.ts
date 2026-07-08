@@ -34,6 +34,19 @@ export const MOCK_PRODUCTS: ProductPayload[] = [
   { id: '9', name: 'Falda de Paseo', category: 'coleccion', mat: 'Lino rústico', price: 55, img: '/img/galeria_6.png', hoverImage: '/img/galeria_7.png', isAtelier: false },
   { id: '10', name: 'Camisa Rústica', category: 'coleccion', mat: 'Algodón', price: 45, img: '/img/galeria_18.png', hoverImage: '/img/galeria_1.png', isAtelier: false },
   { id: '11', name: 'Vestido Hero Clásico', category: 'coleccion', mat: 'Lino Fino', price: 110, img: '/img/flamenca_blanca.png', hoverImage: '/img/galeria_4.png', isAtelier: true },
+  // NUEVOS PRODUCTOS AÑADIDOS
+  { id: '12', name: 'Vestido "Brisa" Estampado', category: 'batas', mat: 'Algodón suave', price: 89, img: '/img/IMG_1802.jpeg', hoverImage: '/img/IMG_1823.jpeg', description: 'Un diseño fresco y cómodo ideal para los días soleados del sur.', isAtelier: false },
+  { id: '13', name: 'Conjunto "Albero"', category: 'flamenca', mat: 'Lino y bordados', price: 135, img: '/img/IMG_1839.jpeg', hoverImage: '/img/IMG_1849.jpeg', description: 'Dos piezas con aires flamencos y detalles únicos en mangas.', isAtelier: true },
+  { id: '14', name: 'Bata "Doñana" Clásica', category: 'batas', mat: 'Lino natural', price: 115, img: '/img/IMG_1851.jpeg', hoverImage: '/img/IMG_1854.jpeg', description: 'Elegante bata de lino con caída perfecta y estilo tradicional.', isAtelier: false },
+  { id: '15', name: 'Jesusito "Triana"', category: 'batas', mat: 'Plumeti', price: 95, img: '/img/IMG_1855.jpeg', hoverImage: '/img/IMG_1856.jpeg', description: 'Confección delicada en plumeti para las más pequeñas.', isAtelier: false },
+  { id: '16', name: 'Mono "Salobreña"', category: 'batas', mat: 'Algodón rústico', price: 75, img: '/img/IMG_1865.jpeg', hoverImage: '/img/IMG_1869.jpeg', description: 'Comodidad sin perder estilo para jugar todo el día.', isAtelier: false },
+  { id: '17', name: 'Vestido "Marbella"', category: 'flamenca', mat: 'Lino premium', price: 160, img: '/img/IMG_1870.jpeg', hoverImage: '/img/IMG_1871.jpeg', description: 'Vestido fluido con inspiración andaluza.', isAtelier: true },
+  { id: '18', name: 'Bata "Ronda" Calada', category: 'batas', mat: 'Algodón con encajes', price: 110, img: '/img/IMG_1895.jpeg', hoverImage: '/img/IMG_1896.jpeg', description: 'Un clásico renovado con exquisitos remates calados.', isAtelier: false },
+  { id: '19', name: 'Conjunto "Tarifa"', category: 'batas', mat: 'Algodón orgánico', price: 85, img: '/img/IMG_1905.jpeg', hoverImage: '/img/IMG_1911.jpeg', description: 'Fresco y transpirable, perfecto para la brisa costera.', isAtelier: false },
+  { id: '20', name: 'Vestido "Mijas"', category: 'flamenca', mat: 'Tejido mixto y madroños', price: 185, img: '/img/IMG_1912.jpeg', hoverImage: '/img/IMG_1919.jpeg', description: 'Volantes sutiles para pasear con estilo.', isAtelier: true },
+  { id: '21', name: 'Conjunto "Nerja"', category: 'batas', mat: 'Lino lavado', price: 90, img: '/img/IMG_1921.jpeg', hoverImage: '/img/IMG_1947.jpeg', description: 'Lino extra suave con detalles al tono.', isAtelier: false },
+  { id: '22', name: 'Vestido "Estepona"', category: 'flamenca', mat: 'Algodón', price: 145, img: '/img/IMG_1948.jpeg', hoverImage: '/img/IMG_1963.jpeg', description: 'Diseño floral alegre y vital, ideal para cualquier evento de día.', isAtelier: true },
+  { id: '23', name: 'Coletero Lazo Exclusivo', category: 'complementos', mat: 'Seda', price: 15, img: '/img/326201464_1158624021686020_942794443900967684_n.jpg', hoverImage: '/img/IMG_1802.jpeg', description: 'Coletero de edición limitada con estampado exclusivo.', isAtelier: false },
 ];
 
 export async function getProductsByCategory(category: string): Promise<ProductPayload[]> {
